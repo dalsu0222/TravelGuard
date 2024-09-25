@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
+import { useEmbassyData } from "../utils/hooks/useEmbassyData";
 
 interface EmbassyData {
   국가명: string;
@@ -20,47 +20,28 @@ interface EmbassyData {
 }
 
 export default function EmbassyPage() {
-  const [embassies, setEmbassies] = useState<EmbassyData[]>([]);
+  const { data: embassies, isLoading, error } = useEmbassyData();
+
   const [filteredEmbassies, setFilteredEmbassies] = useState<EmbassyData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiKey = import.meta.env.VITE_API_KEY_EMBASSY;
-        const response = await axios.get(
-          "https://api.odcloud.kr/api/15076569/v1/uddi:7692653c-21f9-4396-b6b3-f3f0cdbe9370",
-          {
-            params: {
-              page: 1,
-              perPage: 1000,
-              serviceKey: apiKey,
-            },
-          }
-        );
-        // console.log(response.data.data);
-        setEmbassies(response.data.data);
-        setFilteredEmbassies(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const filtered = embassies.filter(
-      (embassy) =>
-        embassy.국가명.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        embassy.재외공관명.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredEmbassies(filtered);
+    if (embassies) {
+      const filtered = embassies.filter(
+        (embassy: { 국가명: string; 재외공관명: string }) =>
+          embassy.국가명.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          embassy.재외공관명.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredEmbassies(filtered);
+    }
   }, [searchTerm, embassies]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
     <G.Container>

@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  // faArrowRight,
+  faArrowRightToBracket,
+} from "@fortawesome/free-solid-svg-icons";
+import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData ";
 
 interface CountryData {
   국가: string;
@@ -13,45 +19,25 @@ interface CountryData {
 }
 
 export default function PermissionEnter() {
-  const [countries, setCountries] = useState<CountryData[]>([]);
+  const { data: countries, isLoading, error } = usePermissionEnterData();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredCountries, setFilteredCountries] = useState<CountryData[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiKey = import.meta.env.VITE_API_KEY_ENTER;
-        const response = await axios.get(
-          "https://api.odcloud.kr/api/15076574/v1/uddi:b0a4deac-3443-4e7b-bee1-a6163b1dbc17",
-          {
-            params: {
-              page: 1,
-              perPage: 1000,
-              serviceKey: apiKey,
-            },
-          }
-        );
-        setCountries(response.data.data);
-        setFilteredCountries(response.data.data);
-        // console.log(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const filtered = countries.filter((country) =>
-      country.국가.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredCountries(filtered);
+    if (countries) {
+      const filtered = countries.filter((country) =>
+        country.국가.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredCountries(filtered);
+    }
   }, [searchTerm, countries]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
     <G.Container>
@@ -85,7 +71,12 @@ export default function PermissionEnter() {
             <tbody>
               {filteredCountries.map((country, index) => (
                 <tr key={index}>
-                  <P.td>{country.국가}</P.td>
+                  <P.td>
+                    <Link to={`/${country.국가}`}>
+                      {country.국가}{" "}
+                      <FontAwesomeIcon icon={faArrowRightToBracket} />
+                    </Link>
+                  </P.td>
                   <P.td>
                     {/* style={{ textAlign: "center" }} */}
                     {country["일반여권소지자-입국가능기간"]}
