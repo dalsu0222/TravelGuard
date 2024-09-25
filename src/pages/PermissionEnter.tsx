@@ -3,6 +3,7 @@ import axios from "axios";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
+import * as P from "../styles/PermissionEnterStyle";
 
 interface CountryData {
   국가: string;
@@ -32,6 +33,7 @@ const PermissionEnter: React.FC = () => {
         );
         setCountries(response.data.data);
         setFilteredCountries(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -73,83 +75,22 @@ const PermissionEnter: React.FC = () => {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th
-                  style={{
-                    padding: "10px",
-                    borderBottom: "1px solid #ddd",
-                    position: "sticky",
-                    top: 0,
-                    background:
-                      "radial-gradient(211.29% 142.64% at 0% 0%, rgba(127, 169, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%), rgba(8, 8, 8, 0.8)",
-                    zIndex: 1,
-                  }}
-                >
-                  국가
-                </th>
-                <th
-                  style={{
-                    padding: "10px",
-                    borderBottom: "1px solid #ddd",
-                    position: "sticky",
-                    top: 0,
-                    background:
-                      "radial-gradient(211.29% 142.64% at 0% 0%, rgba(127, 169, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%), rgba(8, 8, 8, 0.8)",
-                    zIndex: 1,
-                  }}
-                >
-                  입국가능기간
-                </th>
-                <th
-                  style={{
-                    padding: "10px",
-                    borderBottom: "1px solid #ddd",
-                    position: "sticky",
-                    top: 0,
-                    background:
-                      "radial-gradient(211.29% 142.64% at 0% 0%, rgba(127, 169, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%), rgba(8, 8, 8, 0.8)",
-                    zIndex: 1,
-                  }}
-                >
-                  입국가능여부
-                </th>
-                <th
-                  style={{
-                    padding: "10px",
-                    borderBottom: "1px solid #ddd",
-                    position: "sticky",
-                    top: 0,
-                    background:
-                      "radial-gradient(211.29% 142.64% at 0% 0%, rgba(127, 169, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%), rgba(8, 8, 8, 0.8)",
-                    zIndex: 1,
-                  }}
-                >
-                  입국시 소지여부
-                </th>
+                <P.th>국가</P.th>
+                <P.th>입국가능기간</P.th>
+                <P.th>입국가능여부</P.th>
+                <P.th>입국시 소지여부</P.th>
               </tr>
             </thead>
             <tbody>
               {filteredCountries.map((country, index) => (
                 <tr key={index}>
-                  <td
-                    style={{ padding: "10px", borderBottom: "1px solid #ddd" }}
-                  >
-                    {country.국가}
-                  </td>
-                  <td
-                    style={{ padding: "10px", borderBottom: "1px solid #ddd" }}
-                  >
+                  <P.td>{country.국가}</P.td>
+                  <P.td>
+                    {/* style={{ textAlign: "center" }} */}
                     {country["일반여권소지자-입국가능기간"]}
-                  </td>
-                  <td
-                    style={{ padding: "10px", borderBottom: "1px solid #ddd" }}
-                  >
-                    {country["일반여권소지자-입국가능여부"]}
-                  </td>
-                  <td
-                    style={{ padding: "10px", borderBottom: "1px solid #ddd" }}
-                  >
-                    {country["입국시 소지여부"]}
-                  </td>
+                  </P.td>
+                  <P.td>{country["일반여권소지자-입국가능여부"]}</P.td>
+                  <P.td>{country["입국시 소지여부"]}</P.td>
                 </tr>
               ))}
             </tbody>
