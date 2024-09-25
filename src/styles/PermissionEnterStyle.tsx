@@ -17,5 +17,5 @@ export const th = styled.th`
 
 export const td = styled.td`
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #5e5e5e;
 `;

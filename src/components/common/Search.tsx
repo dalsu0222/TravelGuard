@@ -26,8 +26,10 @@ const IconWrapper = styled.div`
 
 export default function Search({
   onSearch,
+  placeholder = "대륙 또는 국가 명을 입력하세요",
 }: {
   onSearch: (value: string) => void;
+  placeholder?: string;
 }) {
   return (
     <SearchContainer>
@@ -36,7 +38,7 @@ export default function Search({
       </IconWrapper>
       <Input
         type="text"
-        placeholder="대륙 또는 국가 명을 입력하세요"
+        placeholder={placeholder}
         onChange={(e) => onSearch(e.target.value)}
       />
     </SearchContainer>

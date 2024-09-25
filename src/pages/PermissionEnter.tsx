@@ -12,7 +12,7 @@ interface CountryData {
   "입국시 소지여부": string;
 }
 
-const PermissionEnter: React.FC = () => {
+export default function PermissionEnter() {
   const [countries, setCountries] = useState<CountryData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredCountries, setFilteredCountries] = useState<CountryData[]>([]);
@@ -99,6 +99,4 @@ const PermissionEnter: React.FC = () => {
       </G.mw>
     </G.Container>
   );
-};
-
-export default PermissionEnter;
+}
