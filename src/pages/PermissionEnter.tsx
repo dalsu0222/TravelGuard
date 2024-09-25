@@ -20,20 +20,20 @@ export default function PermissionEnter() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiKey = import.meta.env.VITE_API_KEY_ENTER;
         const response = await axios.get(
           "https://api.odcloud.kr/api/15076574/v1/uddi:b0a4deac-3443-4e7b-bee1-a6163b1dbc17",
           {
             params: {
               page: 1,
               perPage: 1000,
-              serviceKey:
-                "6+dN4DfuPjp96sLh1/go7M3BLBwwigNpa7rx6a1+F+n3//4kjjvwEJMX2wTZc2T1BLsnfnM3d56UQSmOjMwCww==",
+              serviceKey: apiKey,
             },
           }
         );
         setCountries(response.data.data);
         setFilteredCountries(response.data.data);
-        console.log(response.data.data);
+        // console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

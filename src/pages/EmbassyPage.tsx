@@ -27,18 +27,18 @@ export default function EmbassyPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiKey = import.meta.env.VITE_API_KEY_EMBASSY;
         const response = await axios.get(
           "https://api.odcloud.kr/api/15076569/v1/uddi:7692653c-21f9-4396-b6b3-f3f0cdbe9370",
           {
             params: {
               page: 1,
               perPage: 1000,
-              serviceKey:
-                "6+dN4DfuPjp96sLh1/go7M3BLBwwigNpa7rx6a1+F+n3//4kjjvwEJMX2wTZc2T1BLsnfnM3d56UQSmOjMwCww==",
+              serviceKey: apiKey,
             },
           }
         );
-        console.log(response.data.data);
+        // console.log(response.data.data);
         setEmbassies(response.data.data);
         setFilteredEmbassies(response.data.data);
       } catch (error) {
