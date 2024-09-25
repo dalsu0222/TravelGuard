@@ -8,8 +8,10 @@ import { useCountriesData } from "../utils/hooks/useCountriesData";
 export default function MainPage() {
   // const [activeTab, setActiveTab] = useState("국가/지역별");
   const [selectedLevel, setSelectedLevel] = useState(-1);
-  const { countries, loading, error } = useCountriesData();
+  const { data: countriesData, isLoading, error } = useCountriesData();
   const [searchTerm, setSearchTerm] = useState("");
+
+  console.log(countriesData);
 
   const getLevelColor = (level: string | null): 0 | 1 | 2 | 3 | 4 => {
     if (level === null || level === "없음" || level.startsWith("0단계"))
@@ -32,9 +34,9 @@ export default function MainPage() {
   };
 
   const filteredCountries = useMemo(() => {
-    if (!countries.features) return [];
+    if (!countriesData || !countriesData.features) return [];
 
-    const filtered = countries.features.filter((country) => {
+    const filtered = countriesData.features.filter((country) => {
       const level = country.properties.travelAdvisoryLevel;
       const numericLevel = getNumericLevel(level ?? null);
       const matchesLevel =
@@ -45,14 +47,13 @@ export default function MainPage() {
       return matchesLevel && matchesSearch;
     });
 
-    // 국가 이름으로 ㄱㄴㄷ순 정렬
     return filtered.sort((a, b) =>
       String(a.properties.country_nm).localeCompare(
         String(b.properties.country_nm),
         "ko"
       )
     );
-  }, [countries.features, selectedLevel, searchTerm]);
+  }, [countriesData, selectedLevel, searchTerm]);
 
   const handleSearch = useCallback((value: string) => {
     setSearchTerm(value);
@@ -108,9 +109,9 @@ export default function MainPage() {
           ))}
         </M.TabsContainer2>
         <M.Box style={{ marginTop: 16 }} className="scroll">
-          {loading && <p>로딩 중...</p>}
-          {error && <p>에러: {error}</p>}
-          {!loading && !error && (
+          {isLoading && <p>로딩 중...</p>}
+          {error && <p>에러: {String(error)}</p>}
+          {!isLoading && !error && countriesData && (
             <M.GridUl>
               {filteredCountries.map((country) => (
                 <M.Li

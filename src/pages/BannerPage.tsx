@@ -19,10 +19,14 @@ const BannerPage: React.FC = () => {
   const [hoverD, setHoverD] = useState<GeoJsonFeature | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globeRef = useRef<any>();
-  const { countries, loading, error } = useCountriesData();
+  const { data: countriesData, isLoading, error } = useCountriesData();
 
   useEffect(() => {
-    if (countries.features.length > 0 && globeRef.current) {
+    if (
+      countriesData &&
+      countriesData.features.length > 0 &&
+      globeRef.current
+    ) {
       // 데이터가 로드되고 Globe 컴포넌트가 마운트된 후 카메라 위치 설정
       setTimeout(() => {
         globeRef.current.pointOfView(
@@ -35,10 +39,10 @@ const BannerPage: React.FC = () => {
         );
       }, 100); // 약간의 지연을 주어 Globe 컴포넌트가 완전히 렌더링되도록 함
     }
-  }, [countries.features]);
+  }, [countriesData]);
 
-  if (loading) return <div>Loading...</div>; // 나중에 로딩스피너로 대체
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div>Loading...</div>; // 나중에 로딩스피너로 대체
+  if (error) return <div>Error: {String(error)}</div>;
 
   return (
     <G.Wrap>
@@ -46,9 +50,11 @@ const BannerPage: React.FC = () => {
         <Globe
           ref={globeRef}
           {...globeConfig.globeProps} // 국가 밑바탕 색상 오로라처럼?
-          polygonsData={countries.features.filter(
-            (d: GeoJsonFeature) => d.properties.ISO_A2 !== "AQ"
-          )}
+          polygonsData={
+            countriesData?.features?.filter(
+              (d: GeoJsonFeature) => d.properties.ISO_A2 !== "AQ"
+            ) || []
+          }
           polygonAltitude={(d: object) => (d === hoverD ? 0.12 : 0.06)}
           polygonCapColor={(d: object) =>
             COLOR_SCALE(getTravelAdvisoryLevel(d as GeoJsonFeature))
