@@ -1,0 +1,45 @@
+export const continentMap: { [key: string]: string } = {
+  아시아: "Asia",
+  아프리카: "Africa",
+  유럽: "Europe",
+  아메리카: "Americas",
+  남극: "Antarctica",
+  "칠대양(개방해역)": "Seven seas (open ocean)",
+  오세아니아: "Oceania",
+};
+
+export const wbRegionMap: { [key: string]: string } = {
+  남아시아: "South Asia",
+  "사하라 이남 아프리카": "Sub-Saharan Africa",
+  "유럽 및 중앙 아시아": "Europe & Central Asia",
+  "중동 및 북아프리카": "Middle East & North Africa",
+  "라틴 아메리카 및 카리브해": "Latin America & Caribbean",
+  남극: "Antarctica",
+  "동아시아 및 태평양": "East Asia & Pacific",
+  북아메리카: "North America",
+};
+
+export const subregionMap: { [key: string]: string } = {
+  남아시아: "Southern Asia",
+  "중부 아프리카": "Middle Africa",
+  남유럽: "Southern Europe",
+  서아시아: "Western Asia",
+  남아메리카: "South America",
+  남극: "Antarctica",
+  "칠대양(개방해역)": "Seven seas (open ocean)",
+  "호주 및 뉴질랜드": "Australia and New Zealand",
+  서유럽: "Western Europe",
+  "동부 아프리카": "Eastern Africa",
+  "서부 아프리카": "Western Africa",
+  동유럽: "Eastern Europe",
+  카리브해: "Caribbean",
+  "중앙 아메리카": "Central America",
+  동남아시아: "South-Eastern Asia",
+  "남부 아프리카": "Southern Africa",
+  "북부 아프리카": "Northern Africa",
+  북아메리카: "Northern America",
+  동아시아: "Eastern Asia",
+  북유럽: "Northern Europe",
+  멜라네시아: "Melanesia",
+  "중앙 아시아": "Central Asia",
+};

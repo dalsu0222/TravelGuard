@@ -69,6 +69,7 @@ export default function PermissionEnter() {
                 target: { value },
               } as React.ChangeEvent<HTMLInputElement>)
             }
+            placeholder="국가명을 입력하세요"
           />
         </M.Box>
         <M.Box style={{ marginTop: 16 }} className="scroll permission">
