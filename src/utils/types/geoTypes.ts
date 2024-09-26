@@ -5,6 +5,7 @@ export interface GeoJsonFeature {
     ISO_A2: string;
     ADMIN: string;
     travelAdvisoryLevel?: string;
+    country_nm: string;
   };
   geometry: {
     type: string;
