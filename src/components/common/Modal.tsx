@@ -5,6 +5,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  name?: string; // name prop 추가, modal 유형 지정 가능
 }
 
 const ModalOverlay = styled.div`
@@ -20,7 +21,11 @@ const ModalOverlay = styled.div`
   z-index: 1000;
 `;
 
-const ModalContent = styled.div`
+interface ModalContentProps {
+  isMap: boolean;
+}
+
+const ModalContent = styled.div<ModalContentProps>`
   background: var(
     --box-style,
     radial-gradient(
@@ -32,7 +37,7 @@ const ModalContent = styled.div`
   );
   padding: 20px;
   border-radius: 8px;
-  max-width: 50%;
+  max-width: ${(props) => (props.isMap ? "65%" : "50%")}; // 조건부 스타일링
   max-height: 80%;
   overflow-y: auto;
   position: relative;
@@ -52,12 +57,12 @@ const CloseButton = styled.button`
   color: #fff;
 `;
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, name }) => {
   if (!isOpen) return null;
 
   return (
     <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+      <ModalContent isMap={name === "map"} onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose}>&times;</CloseButton>
         {children}
       </ModalContent>

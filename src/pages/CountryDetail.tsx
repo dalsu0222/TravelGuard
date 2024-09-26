@@ -193,7 +193,7 @@ const EmbassyInfo = ({
       <D.TableTitle
         style={{ marginTop: "1rem", paddingBottom: 0, border: "none" }}
       >
-        재외공관(대사관) 정보
+        재외공관(대사관) 정보 ({embassyDataList.length})
       </D.TableTitle>
       {isLoading ? (
         <p>Loading...</p>
@@ -326,7 +326,11 @@ export default function CountryDetail() {
           </M.Box>
         )}
 
-        <Modal isOpen={isMapModalOpen} onClose={() => setIsMapModalOpen(false)}>
+        <Modal
+          isOpen={isMapModalOpen}
+          onClose={() => setIsMapModalOpen(false)}
+          name="map"
+        >
           <img
             src={countryData?.alarm?.dang_map_download_url}
             alt="여행경보지도"
