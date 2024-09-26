@@ -6,6 +6,7 @@ interface CountryData {
   "일반여권소지자-입국가능기간": string;
   "일반여권소지자-입국가능여부": string;
   "입국시 소지여부": string;
+  비고: string;
 }
 
 const fetchPermissionEnterData = async (): Promise<CountryData[]> => {

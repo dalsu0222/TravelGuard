@@ -5,18 +5,25 @@ import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
 import { useEmbassyData } from "../utils/hooks/useEmbassyData";
 
+// interface EmbassyData {
+//   국가명: string;
+//   국가코드: string;
+//   긴급전화번호: string;
+//   // 무료전화번호: string;
+//   // 영사콜센터번호: string;
+//   // 재외공관경도: string;
+//   // 재외공관위도: string;
+//   // 재외공관유형: string;
+//   재외공관명: string;
+//   재외공관주소: string;
+//   전화번호: string;
+// }
 interface EmbassyData {
-  국가명: string;
-  국가코드: string;
-  긴급전화번호: string;
-  // 무료전화번호: string;
-  // 영사콜센터번호: string;
-  // 재외공관경도: string;
-  // 재외공관위도: string;
-  // 재외공관유형: string;
-  재외공관명: string;
-  재외공관주소: string;
-  전화번호: string;
+  country_nm: string;
+  embassy_kor_nm: string;
+  emblgbd_addr: string;
+  tel_no: string;
+  urgency_tel_no: string;
 }
 
 export default function EmbassyPage() {
@@ -28,9 +35,11 @@ export default function EmbassyPage() {
   useEffect(() => {
     if (embassies) {
       const filtered = embassies.filter(
-        (embassy: { 국가명: string; 재외공관명: string }) =>
-          embassy.국가명.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          embassy.재외공관명.toLowerCase().includes(searchTerm.toLowerCase())
+        (embassy: { country_nm: string; embassy_kor_nm: string }) =>
+          embassy.country_nm.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          embassy.embassy_kor_nm
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
       );
       setFilteredEmbassies(filtered);
     }
@@ -76,10 +85,14 @@ export default function EmbassyPage() {
               {filteredEmbassies.map((embassy, index) => (
                 <tr key={index}>
                   {/* <P.td>{embassy.국가명}</P.td> */}
-                  <P.td style={{ minWidth: 150 }}>{embassy.재외공관명}</P.td>
-                  <P.td>{embassy.재외공관주소}</P.td>
-                  <P.td style={{ minWidth: 170 }}>{embassy.긴급전화번호}</P.td>
-                  <P.td style={{ minWidth: 170 }}>{embassy.전화번호}</P.td>
+                  <P.td style={{ minWidth: 150 }}>
+                    {embassy.embassy_kor_nm}
+                  </P.td>
+                  <P.td>{embassy.emblgbd_addr}</P.td>
+                  <P.td style={{ minWidth: 170 }}>
+                    {embassy.urgency_tel_no}
+                  </P.td>
+                  <P.td style={{ minWidth: 170 }}>{embassy.tel_no}</P.td>
                 </tr>
               ))}
             </tbody>

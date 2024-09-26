@@ -29,9 +29,11 @@ export const Container = styled.div`
 
 export const mw = styled.div`
   max-width: 1300px;
-  width: calc(100% - 160px);
+  /* width: calc(100% - 160px); */
+  width: calc(100% - 180px);
   /* min-width: 800px; */
   margin: 2rem auto;
+  position: relative;
 `;
 
 export default GlobalStyle;

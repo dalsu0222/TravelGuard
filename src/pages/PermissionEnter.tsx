@@ -9,7 +9,7 @@ import {
   // faArrowRight,
   faArrowRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData ";
+import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData";
 
 interface CountryData {
   국가: string;

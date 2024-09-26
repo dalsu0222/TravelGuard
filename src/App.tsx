@@ -8,6 +8,7 @@ import EmbassyPage from "./pages/EmbassyPage.tsx";
 import Header from "./components/common/Header.tsx";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import CountryDetail from "./pages/CountryDetail.tsx";
 
 library.add(faMagnifyingGlass);
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           <Route path="/main" element={<MainPage />} />
           <Route path="/permission" element={<PermissionEnter />} />
           <Route path="/embassy" element={<EmbassyPage />} />
+          <Route path="/:country_nm" element={<CountryDetail />} />
         </Routes>
       </Router>
     </QueryClientProvider>

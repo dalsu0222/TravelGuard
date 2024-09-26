@@ -41,6 +41,14 @@ body {
 li {
   list-style: none;
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+li:hover a {
+  color: #7fa9ff;
+  transition: color 0.3s ease-in-out;
+}
 
 .scene-container {
   width: -webkit-fill-available !important;

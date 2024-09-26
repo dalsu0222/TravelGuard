@@ -9,6 +9,7 @@ import {
   wbRegionMap,
   subregionMap,
 } from "../utils/constant/regionsMap";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   // const [activeTab, setActiveTab] = useState("국가/지역별");
@@ -191,7 +192,9 @@ export default function MainPage() {
                       country.properties.travelAdvisoryLevel ?? "null"
                     )}
                   />
-                  {country.properties.country_nm}
+                  <Link to={`/${country.properties.country_nm}`}>
+                    {country.properties.country_nm}{" "}
+                  </Link>
                 </M.Li>
               ))}
             </M.GridUl>

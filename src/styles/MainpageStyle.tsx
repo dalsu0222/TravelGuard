@@ -13,6 +13,10 @@ export const Box = styled.div`
     rgba(8, 8, 8, 0.8)
   );
   padding: 16px;
+  &.countryName {
+    display: flex;
+    align-items: center;
+  }
   &.scroll {
     overflow-y: scroll;
     /* max-height: 400px; */
@@ -20,7 +24,6 @@ export const Box = styled.div`
     &.permission {
       max-height: calc(100vh - 320px - 3rem);
     }
-
     /* 커스텀 스크롤바 스타일 */
     &::-webkit-scrollbar {
       width: 8px;

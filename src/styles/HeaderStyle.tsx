@@ -29,7 +29,7 @@ export const HeaderCon = styled.header`
       "0px 200px",
     ],
   })}
-  z-index: 9999;
+  z-index: 999;
 `;
 
 export const Logo = styled.img`

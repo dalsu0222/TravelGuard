@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Globe from "react-globe.gl";
 import * as G from "../styles/GlobalStyle";
 import * as B from "../styles/BannerPageStyle";
@@ -20,6 +21,7 @@ const BannerPage: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globeRef = useRef<any>();
   const { data: countriesData, isLoading, error } = useCountriesData();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -63,6 +65,10 @@ const BannerPage: React.FC = () => {
           onPolygonHover={(polygon: object | null) =>
             setHoverD(polygon as GeoJsonFeature | null)
           }
+          onPolygonClick={(polygon: object) => {
+            const geoPolygon = polygon as GeoJsonFeature;
+            navigate(`/${geoPolygon.properties.country_nm}`);
+          }}
         />
         <B.expCard>
           {TRAVEL_ADVISORY_LEVELS.slice(0, 4).map((level, index) => (
