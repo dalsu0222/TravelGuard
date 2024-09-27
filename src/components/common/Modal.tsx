@@ -44,6 +44,26 @@ const ModalContent = styled.div<ModalContentProps>`
   color: #fff;
   border-top: 1px solid var(--box-stroke, #7fa9ff);
   border-bottom: 1px solid var(--box-stroke, #7fa9ff);
+
+  /* 커스텀 스크롤바 스타일 */
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(127, 169, 255, 0.1);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(127, 169, 255, 0.5);
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(127, 169, 255, 0.7);
+  }
+  /* Firefox에서의 스크롤바 스타일 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(127, 169, 255, 0.5) rgba(127, 169, 255, 0.1);
 `;
 
 const CloseButton = styled.button`
