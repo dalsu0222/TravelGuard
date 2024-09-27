@@ -101,14 +101,11 @@ export const NoticeContent = styled.div`
   & img {
     width: 100%;
   }
-  & > *:not(table) {
-    color: #fff !important; // 내용 색 모두 흰색으로 변경, table 제외
+  & * {
+    color: #fff; // 내용 색 모두 흰색으로 변경
   }
-  & table {
-    background: #d26868 !important;
-    /* color: black !important; */
-  }
-  & table td {
+
+  & table td * {
     padding: 2px 5px;
     background: white;
     color: black !important;
