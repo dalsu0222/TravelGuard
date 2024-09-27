@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
 import { useEmbassyData } from "../utils/hooks/useEmbassyData";
 
-// interface EmbassyData {
-//   국가명: string;
-//   국가코드: string;
-//   긴급전화번호: string;
-//   // 무료전화번호: string;
-//   // 영사콜센터번호: string;
-//   // 재외공관경도: string;
-//   // 재외공관위도: string;
-//   // 재외공관유형: string;
-//   재외공관명: string;
-//   재외공관주소: string;
-//   전화번호: string;
-// }
 interface EmbassyData {
   country_nm: string;
   embassy_kor_nm: string;
@@ -26,23 +13,27 @@ interface EmbassyData {
   urgency_tel_no: string;
 }
 
+const EmbassyRow = React.memo(({ embassy }: { embassy: EmbassyData }) => (
+  <tr>
+    <P.td style={{ minWidth: 150 }}>{embassy.embassy_kor_nm}</P.td>
+    <P.td>{embassy.emblgbd_addr}</P.td>
+    <P.td style={{ minWidth: 170 }}>{embassy.urgency_tel_no}</P.td>
+    <P.td style={{ minWidth: 170 }}>{embassy.tel_no}</P.td>
+  </tr>
+));
+
 export default function EmbassyPage() {
   const { data: embassies, isLoading, error } = useEmbassyData();
-
-  const [filteredEmbassies, setFilteredEmbassies] = useState<EmbassyData[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  useEffect(() => {
-    if (embassies) {
-      const filtered = embassies.filter(
-        (embassy: { country_nm: string; embassy_kor_nm: string }) =>
-          embassy.country_nm.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          embassy.embassy_kor_nm
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
-      );
-      setFilteredEmbassies(filtered);
-    }
+  const filteredEmbassies = useMemo(() => {
+    if (!embassies) return [];
+    const term = searchTerm.trim();
+    return embassies.filter(
+      (embassy) =>
+        embassy.country_nm.includes(term) ||
+        embassy.embassy_kor_nm.includes(term)
+    );
   }, [searchTerm, embassies]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +65,6 @@ export default function EmbassyPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                {/* <P.th>국가명</P.th> */}
                 <P.th>재외공관명</P.th>
                 <P.th>주소</P.th>
                 <P.th>긴급전화번호</P.th>
@@ -83,17 +73,7 @@ export default function EmbassyPage() {
             </thead>
             <tbody>
               {filteredEmbassies.map((embassy, index) => (
-                <tr key={index}>
-                  {/* <P.td>{embassy.국가명}</P.td> */}
-                  <P.td style={{ minWidth: 150 }}>
-                    {embassy.embassy_kor_nm}
-                  </P.td>
-                  <P.td>{embassy.emblgbd_addr}</P.td>
-                  <P.td style={{ minWidth: 170 }}>
-                    {embassy.urgency_tel_no}
-                  </P.td>
-                  <P.td style={{ minWidth: 170 }}>{embassy.tel_no}</P.td>
-                </tr>
+                <EmbassyRow key={index} embassy={embassy} />
               ))}
             </tbody>
           </table>

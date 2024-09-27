@@ -30,9 +30,16 @@ const fetchEmbassyData = async (): Promise<EmbassyData[]> => {
       },
     }
   );
-  console.log(response.data.data);
 
-  return response.data.data;
+  // 미합중국 -> 미국으로 변경
+  const data = response.data.data.map((item: EmbassyData) => {
+    if (item.country_nm === "미합중국") {
+      return { ...item, country_nm: "미국" };
+    }
+    return item;
+  });
+
+  return data;
 };
 
 export const useEmbassyData = () => {

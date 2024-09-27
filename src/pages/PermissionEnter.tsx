@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  // faArrowRight,
-  faArrowRightToBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData";
 
 interface CountryData {
@@ -18,18 +15,31 @@ interface CountryData {
   "입국시 소지여부": string;
 }
 
+const CountryRow = React.memo(
+  (
+    { country }: { country: CountryData } // 불필요한 재렌더링 방지
+  ) => (
+    <tr>
+      <P.td>
+        <Link to={`/${country.국가}`}>
+          {country.국가} <FontAwesomeIcon icon={faArrowRightToBracket} />
+        </Link>
+      </P.td>
+      <P.td>{country["일반여권소지자-입국가능기간"]}</P.td>
+      <P.td>{country["일반여권소지자-입국가능여부"]}</P.td>
+      <P.td>{country["입국시 소지여부"]}</P.td>
+    </tr>
+  )
+);
+
 export default function PermissionEnter() {
   const { data: countries, isLoading, error } = usePermissionEnterData();
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [filteredCountries, setFilteredCountries] = useState<CountryData[]>([]);
 
-  useEffect(() => {
-    if (countries) {
-      const filtered = countries.filter((country) =>
-        country.국가.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredCountries(filtered);
-    }
+  const filteredCountries = useMemo(() => {
+    if (!countries) return [];
+    const term = searchTerm.trim();
+    return countries.filter((country) => country.국가.includes(term));
   }, [searchTerm, countries]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,20 +80,7 @@ export default function PermissionEnter() {
             </thead>
             <tbody>
               {filteredCountries.map((country, index) => (
-                <tr key={index}>
-                  <P.td>
-                    <Link to={`/${country.국가}`}>
-                      {country.국가}{" "}
-                      <FontAwesomeIcon icon={faArrowRightToBracket} />
-                    </Link>
-                  </P.td>
-                  <P.td>
-                    {/* style={{ textAlign: "center" }} */}
-                    {country["일반여권소지자-입국가능기간"]}
-                  </P.td>
-                  <P.td>{country["일반여권소지자-입국가능여부"]}</P.td>
-                  <P.td>{country["입국시 소지여부"]}</P.td>
-                </tr>
+                <CountryRow key={index} country={country} />
               ))}
             </tbody>
           </table>
