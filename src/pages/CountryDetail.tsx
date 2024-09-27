@@ -45,7 +45,13 @@ const fetchCountryData = async (country_nm: string) => {
   }
 };
 
-const CountryInfo = ({ countryData }: { countryData: CountryData }) => {
+const CountryInfo = ({
+  countryData,
+  country_nm,
+}: {
+  countryData: CountryData;
+  country_nm: string;
+}) => {
   return (
     <M.Box className="countryName" style={{ marginTop: 16 }}>
       <div>
@@ -57,8 +63,7 @@ const CountryInfo = ({ countryData }: { countryData: CountryData }) => {
       </div>
       <div>
         <h2>
-          {countryData?.alarm?.country_nm} ({countryData?.alarm?.country_eng_nm}
-          )
+          {country_nm} ({countryData?.alarm?.country_eng_nm})
         </h2>
         <p>{countryData?.alarm?.continent_nm || "대륙 정보 없음"}</p>
       </div>
@@ -258,7 +263,9 @@ export default function CountryDetail() {
 
   useEffect(() => {
     if (country_nm) {
-      fetchCountryData(country_nm)
+      const modifiedCountryName =
+        country_nm === "미국" ? "미합중국" : country_nm;
+      fetchCountryData(modifiedCountryName)
         .then((data) => {
           setCountryData({ safety: data.safety, alarm: data.alarm });
           setEmbassyDataList(data.embassy || []);
@@ -302,7 +309,10 @@ export default function CountryDetail() {
         </p>
         {countryData.alarm ? (
           <>
-            <CountryInfo countryData={countryData} />
+            <CountryInfo
+              countryData={countryData}
+              country_nm={country_nm || ""}
+            />
             <div style={{ display: "flex", marginTop: 16, gap: 16 }}>
               <M.Box style={{ flex: 0.7, aspectRatio: "4/3" }}>
                 <D.MapContainer>
