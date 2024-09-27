@@ -74,12 +74,12 @@ interface LiProps {
 
 export const Li = styled.li<LiProps>`
   margin: 0 10px;
-  /* padding: 30px 0; */
   cursor: pointer;
   border-bottom: ${(props) => (props.isActive ? "1px solid #7FA9FF" : "none")};
   color: white;
   text-decoration: none;
   padding: 2rem 3rem;
+  white-space: nowrap; /* Prevent text from wrapping */
 
   &:hover {
     color: #7fa9ff;
