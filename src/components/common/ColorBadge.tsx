@@ -8,18 +8,17 @@ export default function ColorBadge({ number }: ColorBadgeProps) {
       case 0:
         return "#d3d3d3";
       case 1:
-        return "#00FFA3";
+        return "#8AB5FF";
       case 2:
-        return "#FFF738";
+        return "#80FFCF";
       case 3:
-        return "#FF6636";
+        return "#FFF9A5";
       case 4:
-        return "#494949";
+        return "#FF9D82";
       default:
         return "";
     }
   };
-
   return (
     <div
       className="colorbadge"

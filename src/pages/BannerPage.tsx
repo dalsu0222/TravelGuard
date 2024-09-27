@@ -110,9 +110,9 @@ const BannerPage: React.FC = () => {
             />
           )}
         <B.expCard>
-          {TRAVEL_ADVISORY_LEVELS.slice(0, 4).map((level, index) => (
+          {TRAVEL_ADVISORY_LEVELS.slice(0, 5).map((level, index) => (
             <B.stepCol key={index}>
-              <TravelStep number={(index + 1) as 1 | 2 | 3 | 4} />
+              <TravelStep number={index as 0 | 1 | 2 | 3 | 4} />
               <div style={{ fontSize: "14px", flexGrow: 1 }}>
                 <p>{level.description}</p>
                 {level.additionalInfo && <p>{level.additionalInfo}</p>}

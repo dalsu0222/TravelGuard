@@ -24,7 +24,7 @@ export const getPolygonLabel = (feature: GeoJsonFeature) => `
     <b>${feature.properties.country_nm} (${
   // 한글 나라명으로 대체
   feature.properties.ISO_A2
-}):</b> <br />
+})</b> <br />
     <i>여행경보 ${feature.properties.travelAdvisoryLevel || "없음"}</i>
   `;
 

@@ -2,7 +2,7 @@ import ColorBadge from "./ColorBadge";
 import styled from "@emotion/styled";
 
 interface TravelStepProps {
-  number: 1 | 2 | 3 | 4;
+  number: 0 | 1 | 2 | 3 | 4;
 }
 
 const Travelstep = styled.div`
@@ -13,7 +13,7 @@ const Travelstep = styled.div`
 
 export default function TravelStep({ number }: TravelStepProps) {
   const title: string[] = [
-    "",
+    "0단계 경보없음",
     "1단계 여행유의",
     "2단계 여행자제",
     "3단계 출국권고",

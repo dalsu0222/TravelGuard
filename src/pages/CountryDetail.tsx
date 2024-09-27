@@ -66,7 +66,13 @@ const CountryInfo = ({ countryData }: { countryData: CountryData }) => {
   );
 };
 
-const SafetyNotices = ({ safety }: { safety: CountryData["safety"] }) => {
+const SafetyNotices = ({
+  safety,
+  country_nm,
+}: {
+  safety: CountryData["safety"];
+  country_nm: string;
+}) => {
   const [selectedNotice, setSelectedNotice] = useState<
     CountryData["safety"][0] | null
   >(null);
@@ -80,33 +86,41 @@ const SafetyNotices = ({ safety }: { safety: CountryData["safety"] }) => {
     e.stopPropagation(); // 이벤트 버블링 방지
     window.open(url, "_blank");
   };
-
   return (
     <M.Box>
       <D.TableTitle>안전공지</D.TableTitle>
-      <table style={{ width: "100%" }}>
-        <tbody>
-          {safety?.map((notice, index) => (
-            <D.TableTr
-              key={index}
-              onClick={() => openModal(notice)}
-              style={{ cursor: "pointer" }}
-            >
-              <D.TableTd>
-                {notice.title}{" "}
-                {notice.file_download_url && (
-                  <FontAwesomeIcon
-                    icon={faPaperclip}
-                    onClick={(e) => handleDownload(e, notice.file_download_url)}
-                    style={{ cursor: "pointer", marginLeft: "5px" }}
-                  />
-                )}
-              </D.TableTd>
-              <td>{notice.wrt_dt}</td>
-            </D.TableTr>
-          ))}
-        </tbody>
-      </table>
+      {safety.length > 0 ? (
+        <table style={{ width: "100%" }}>
+          <tbody>
+            {safety?.map((notice, index) => (
+              <D.TableTr
+                key={index}
+                onClick={() => openModal(notice)}
+                style={{ cursor: "pointer" }}
+              >
+                <D.TableTd>
+                  {notice.title}{" "}
+                  {notice.file_download_url && (
+                    <FontAwesomeIcon
+                      icon={faPaperclip}
+                      onClick={(e) =>
+                        handleDownload(e, notice.file_download_url)
+                      }
+                      style={{ cursor: "pointer", marginLeft: "5px" }}
+                    />
+                  )}
+                </D.TableTd>
+                <td>{notice.wrt_dt}</td>
+              </D.TableTr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p style={{ marginTop: 16, marginLeft: 5 }}>
+          {country_nm}의 안전공지 정보가 없습니다.
+        </p>
+      )}
+
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {selectedNotice && (
           <div>
@@ -306,7 +320,10 @@ export default function CountryDetail() {
                 </D.MapContainer>
               </M.Box>
               <D.SafetyCon>
-                <SafetyNotices safety={countryData.safety} />
+                <SafetyNotices
+                  safety={countryData.safety}
+                  country_nm={country_nm || ""}
+                />
                 <EntryRequirements
                   countryPermission={countryPermission}
                   isLoading={permissionLoading}
