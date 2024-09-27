@@ -34,10 +34,11 @@ https://travelguard.vercel.app/
 ## 페이지 소개
 
 | **지구본 페이지(첫 접속시 화면)** | **국가/지역별 정보 페이지** |
-|----------------|----------------|
-| <img src="https://github.com/user-attachments/assets/9f0ffb54-0259-4107-baf7-f2c2b03597e9" alt="image" width="500" />|  <img src="https://github.com/user-attachments/assets/66872202-97f6-4deb-a5c6-f98d21e7dd7c" alt="image" width="500" />|
-| **국가별 세부정보 페이지** |
-| <img src="https://github.com/user-attachments/assets/281466f4-82a5-42a4-8df1-eec774aa8e09" alt="image" width="500" /> |
+|:----------------:|:----------------:|
+| <img src="https://github.com/user-attachments/assets/9f0ffb54-0259-4107-baf7-f2c2b03597e9" alt="image" width="500" /> | <img src="https://github.com/user-attachments/assets/66872202-97f6-4deb-a5c6-f98d21e7dd7c" alt="image" width="500" /> |
+| **국가별 세부정보 페이지** |  |
+| <img src="https://github.com/user-attachments/assets/281466f4-82a5-42a4-8df1-eec774aa8e09" alt="image" width="500" /> |  |
 | **입국허가요건 정보 페이지** | **대사관 정보 페이지** |
 | <img src="https://github.com/user-attachments/assets/0145840d-ded7-47ca-abfb-ae6358835ee4" alt="image" width="500" /> | <img src="https://github.com/user-attachments/assets/5467f7e3-4ab5-41b8-9346-4ac87efeee5e" alt="image" width="500" /> |
+
 
