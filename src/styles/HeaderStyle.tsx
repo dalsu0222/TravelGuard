@@ -31,6 +31,11 @@ export const HeaderCon = styled.header`
   z-index: 999;
 `;
 
+export const LogoCon = styled.div`
+  cursor: pointer;
+  padding: 2rem 3rem;
+`;
+
 export const Logo = styled.img`
   /* width: 310.713px; */
   height: 10px;
@@ -69,11 +74,14 @@ interface LiProps {
 
 export const Li = styled.li<LiProps>`
   margin: 0 10px;
-  padding: 30px 0;
+  /* padding: 30px 0; */
   cursor: pointer;
   border-bottom: ${(props) => (props.isActive ? "1px solid #7FA9FF" : "none")};
+  color: white;
+  text-decoration: none;
+  padding: 2rem 3rem;
 
-  &:hover a {
+  &:hover {
     color: #7fa9ff;
     transition: color 0.3s ease-in-out;
   }
