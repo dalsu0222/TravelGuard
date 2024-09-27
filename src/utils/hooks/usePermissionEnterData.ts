@@ -21,7 +21,16 @@ const fetchPermissionEnterData = async (): Promise<CountryData[]> => {
       },
     }
   );
-  return response.data.data;
+
+  // 타이완 -> 때만으로 변경
+  const data = response.data.data.map((item: CountryData) => {
+    if (item.국가 === "타이완") {
+      return { ...item, 국가: "대만" };
+    }
+    return item;
+  });
+
+  return data;
 };
 
 export const usePermissionEnterData = () => {

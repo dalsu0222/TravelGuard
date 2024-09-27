@@ -52,16 +52,24 @@ export const backBtn = styled.button`
 export const MapContainer = styled.div`
   position: relative;
   width: 100%;
-  padding-bottom: 80%;
+  height: 100%;
   overflow: hidden;
+  /* padding-bottom: 75%;  // 4:3비율 유지
+  overflow: hidden; */
 `;
 
 export const MapImage = styled.img`
-  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  /* position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+    object-fit: cover; // 이미지가 컨테이너를 꽉 채우도록 설정
+  object-position: center; // 이미지를 중앙에 위치시킴 */
 `;
 
 export const MapButton = styled.button`
@@ -89,38 +97,20 @@ export const NoticeContent = styled.div`
   line-height: 1.6;
   font-size: 1rem;
   color: #fff;
-  /* & * {
-    color: #fff !important;
-  } */
+
   & img {
     width: 100%;
   }
-
-  /* h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+  & > *:not(table) {
+    color: #fff !important; // 내용 색 모두 흰색으로 변경, table 제외
   }
-
-  p {
-    margin-bottom: 1em;
+  & table {
+    background: #d26868 !important;
+    /* color: black !important; */
   }
-
-  ul,
-  ol {
-    margin-bottom: 1em;
-    padding-left: 2em;
+  & table td {
+    padding: 2px 5px;
+    background: white;
+    color: black !important;
   }
-
-  a {
-    color: #0066cc;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  } */
 `;

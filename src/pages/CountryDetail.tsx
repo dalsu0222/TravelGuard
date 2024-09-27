@@ -193,7 +193,7 @@ const EmbassyInfo = ({
       <D.TableTitle
         style={{ marginTop: "1rem", paddingBottom: 0, border: "none" }}
       >
-        재외공관(대사관) 정보 ({embassyDataList.length})
+        재외공관 정보 ({embassyDataList.length})
       </D.TableTitle>
       {isLoading ? (
         <p>Loading...</p>
@@ -283,14 +283,14 @@ export default function CountryDetail() {
         </D.backBtn>
         <h1 style={{ fontSize: 32 }}>국가별 상세정보</h1>
         <p style={{ fontSize: 20 }}>
-          국가별 안전공지, 여행경보지도, 입국 허가요건, 대사관 정보를 확인할 수
-          있습니다.
+          국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할
+          수 있습니다.
         </p>
         {countryData.alarm ? (
           <>
             <CountryInfo countryData={countryData} />
             <div style={{ display: "flex", marginTop: 16, gap: 16 }}>
-              <M.Box style={{ flex: 0.7 }}>
+              <M.Box style={{ flex: 0.7, aspectRatio: "4/3" }}>
                 <D.MapContainer>
                   <D.MapImage
                     src={countryData?.alarm?.dang_map_download_url}

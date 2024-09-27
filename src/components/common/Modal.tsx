@@ -35,7 +35,7 @@ const ModalContent = styled.div<ModalContentProps>`
     ),
     rgba(8, 8, 8)
   );
-  padding: 20px;
+  padding: 20px 30px;
   border-radius: 8px;
   max-width: ${(props) => (props.isMap ? "65%" : "50%")}; // 조건부 스타일링
   max-height: 80%;

@@ -14,17 +14,6 @@ const fetchCountriesData = async (): Promise<{
     axios.get(
       `https://apis.data.go.kr/1262000/MedicalEnvironmentService/getMedicalEnvironmentList?serviceKey=${apiKey}&numOfRows=1000&pageNo=1`
     ),
-    // error code 500
-    // axios.get(
-    //   "https://apis.data.go.kr/1262000/MedicalEnvironmentService/getMedicalEnvironmentList",
-    //   {
-    //     params: {
-    //       page: 1,
-    //       perPage: 1000,
-    //       serviceKey: apiKey,
-    //     },
-    //   }
-    // ),
   ]);
 
   const travelAdvisoryData = travelAdvisoryRes.data.data;
@@ -36,10 +25,20 @@ const fetchCountriesData = async (): Promise<{
         isoCode = "SO";
         country.properties.ISO_A2 = "SO";
       }
+
       const advisory = travelAdvisoryData.find(
         (advisoryItem: { country_iso_alp2: string }) =>
           advisoryItem.country_iso_alp2 === isoCode
       );
+
+      let countryName = advisory
+        ? advisory.country_nm
+        : getKoreanCountryName(country.properties.ADMIN);
+
+      if (countryName === "미합중국") {
+        countryName = "미국";
+      }
+
       return {
         ...country,
         properties: {
@@ -47,9 +46,7 @@ const fetchCountriesData = async (): Promise<{
           travelAdvisoryLevel: advisory
             ? advisory.current_travel_alarm
             : "없음",
-          country_nm: advisory
-            ? advisory.country_nm
-            : getKoreanCountryName(country.properties.ADMIN),
+          country_nm: countryName,
         },
       };
     }
