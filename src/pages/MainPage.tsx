@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";

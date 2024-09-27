@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import logo from "../../public/assets/img/LOGO.png";
 import facepaint from "facepaint";
 
 const breakpoints = [576, 768, 992, 1200, 1500];
