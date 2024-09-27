@@ -21,12 +21,12 @@ const App: React.FC = () => {
         <Routes>
           {/* 기본 경로 - bannerPage가 렌더링 */}
           <Route path="/" element={<BannerPage />} />
-
           {/* 추가된 경로 */}
           <Route path="/main" element={<MainPage />} />
           <Route path="/permission" element={<PermissionEnter />} />
           <Route path="/embassy" element={<EmbassyPage />} />
           <Route path="/:country_nm" element={<CountryDetail />} />
+          <Route path="/*" element={<BannerPage />} /> {/* 그 외 페이지 */}
         </Routes>
       </Router>
     </QueryClientProvider>
