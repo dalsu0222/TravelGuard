@@ -24,6 +24,9 @@ export const Box = styled.div`
     &.permission {
       max-height: calc(100vh - 320px - 3rem);
     }
+    &.embassy {
+      max-height: calc(100vh - 320px - 3rem);
+    }
     /* 커스텀 스크롤바 스타일 */
     &::-webkit-scrollbar {
       width: 8px;

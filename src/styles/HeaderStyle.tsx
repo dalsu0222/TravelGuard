@@ -106,24 +106,18 @@ export const Ul = styled.ul`
   }
 `;
 
-// export const Li = styled.li`
-//   margin: 0 10px;
-//   padding: 30px 0;
-//   cursor: pointer;
-// `;
-
 interface LiProps {
-  isActive: boolean;
+  isActive?: boolean;
 }
 
 export const Li = styled.li<LiProps>`
   margin: 0 10px;
   cursor: pointer;
   border-bottom: ${(props) => (props.isActive ? "1px solid #7FA9FF" : "none")};
-  color: white;
+  color: ${(props) => (props.isActive ? "#7FA9FF" : "white")};
   text-decoration: none;
   padding: 2rem 3rem;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
 
   &:hover {
     color: #7fa9ff;
@@ -137,12 +131,6 @@ export const Li = styled.li<LiProps>`
   @media (max-width: 768px) {
     width: 100%;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
   }
-`;
-
-export const A = styled.a`
-  color: white;
-  text-decoration: none;
-  padding: 12px 24px;
 `;

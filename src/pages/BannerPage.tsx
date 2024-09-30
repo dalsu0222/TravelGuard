@@ -113,17 +113,6 @@ const BannerPage: React.FC = () => {
               }}
             />
           )}
-        {/* <B.expCard>
-          {TRAVEL_ADVISORY_LEVELS.slice(0, 5).map((level, index) => (
-            <B.stepCol key={index}>
-              <TravelStep number={index as 0 | 1 | 2 | 3 | 4} />
-              <div style={{ fontSize: "14px", flexGrow: 1 }}>
-                <p>{level.description}</p>
-                {level.additionalInfo && <p>{level.additionalInfo}</p>}
-              </div>
-            </B.stepCol>
-          ))}
-        </B.expCard> */}
         <B.ExpCard isExpanded={isCardExpanded}>
           <B.CardHeader
             onClick={() => setIsCardExpanded(!isCardExpanded)}
@@ -154,26 +143,3 @@ const BannerPage: React.FC = () => {
 };
 
 export default BannerPage;
-
-{
-  /* {hoverD && (
-        <div
-          className="scene-tooltip"
-          style={{
-            left: `${hoverD ? "10%" : "-9999px"}`,
-            top: `${hoverD ? "30%" : "-9999px"}`,
-            transform: hoverD
-              ? `translate(${hoverD ? "0" : "0"}, -50%)`
-              : "none",
-          }}
-        >
-          <b>
-            {hoverD?.properties.ADMIN} ({hoverD?.properties.ISO_A2}):
-          </b>{" "}
-          <br />
-          <i>
-            여행경보 단계: {hoverD?.properties.travelAdvisoryLevel || "없음"}
-          </i>
-        </div>
-      )} */
-}

@@ -31,9 +31,9 @@ export const TableTr = styled.tr`
 `;
 
 export const TableTd = styled.td`
-  white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
-  overflow: hidden; /* 넘치는 텍스트를 숨김 */
-  text-overflow: ellipsis; /* 넘치는 텍스트를 말줄임표로 표시 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   /* max-width: 300px;  */
 
   @media (max-width: 768px) {
@@ -70,12 +70,20 @@ export const backBtn = styled.button`
   background: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  /* border: none; */
-  /* border: 1px solid #7fa9ff; */
   border-radius: 5px;
+  margin: 5px;
+  position: absolute;
+  transform: translate(-100%);
+  left: -16px;
 
   @media (max-width: 768px) {
-    padding: 0.3rem 0.8rem;
+    // 모바일 화면일 때 뒤로가기 버튼 넣는게 좋은지?.. 넣으려니 디자인적으로 배치가 애매함
+    /* padding: 0.3rem 0.8rem;
+    right: 0;
+    left: unset;
+    width: max-content;
+    transform: translate(0, -10px); */
+    display: none;
   }
 `;
 
@@ -93,13 +101,6 @@ export const MapImage = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-    object-fit: cover; // 이미지가 컨테이너를 꽉 채우도록 설정
-  object-position: center; // 이미지를 중앙에 위치시킴 */
 `;
 
 export const MapButton = styled.button`
@@ -111,7 +112,6 @@ export const MapButton = styled.button`
   padding: 5px;
   cursor: pointer;
   z-index: 10;
-  /* padding: 0.5rem 1rem; */
   border-radius: 5px;
 
   @media (max-width: 768px) {

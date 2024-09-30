@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 
 interface ModalProps {
@@ -14,7 +14,7 @@ const ModalOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,6 +87,18 @@ const CloseButton = styled.button<ModalContentProps>`
 `;
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, name }) => {
+  // 모달이 열릴 때 모달 외부에서의 스크롤 막기 -> body태그 스크롤 비활성화
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (

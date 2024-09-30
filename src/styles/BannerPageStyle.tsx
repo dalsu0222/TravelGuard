@@ -24,7 +24,7 @@ export const ExpCard = styled.div<{ isExpanded: boolean }>`
   );
   @media (max-width: 768px) {
     transform: translateY(
-      ${(props) => (props.isExpanded ? "0" : "calc(100% - 40px)")}
+      ${(props) => (props.isExpanded ? "0" : "calc(100% - 60px)")}
     );
     left: 1rem;
     right: 1rem;

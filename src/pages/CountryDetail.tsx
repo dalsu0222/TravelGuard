@@ -293,15 +293,7 @@ export default function CountryDetail() {
   return (
     <G.Container>
       <G.mw>
-        <D.backBtn
-          style={{
-            margin: "5px",
-            position: "absolute",
-            transform: "translate(-100%)",
-            left: "-16px",
-          }}
-          onClick={goBack}
-        >
+        <D.backBtn onClick={goBack}>
           <FontAwesomeIcon icon={faChevronLeft} color="#fff" />
         </D.backBtn>
         <G.ResponsiveHeading>국가별 상세정보</G.ResponsiveHeading>
