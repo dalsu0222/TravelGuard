@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as H from "../../styles/HeaderStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
