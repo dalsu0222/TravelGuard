@@ -46,10 +46,10 @@ export default function EmbassyPage() {
   return (
     <G.Container>
       <G.mw>
-        <h1 style={{ fontSize: 32 }}>국가별 대사관 정보</h1>
-        <p style={{ fontSize: 20 }}>
+        <G.ResponsiveHeading>국가별 대사관 정보</G.ResponsiveHeading>
+        <G.ResponsiveParagraph>
           국가별 대사관 위치, 연락처 등을 확인할 수 있습니다.
-        </p>
+        </G.ResponsiveParagraph>
 
         <M.Box style={{ marginTop: 16 }}>
           <Search
@@ -61,7 +61,7 @@ export default function EmbassyPage() {
             placeholder="국가 또는 지역을 입력하세요"
           />
         </M.Box>
-        <M.Box style={{ marginTop: 16 }} className="scroll permission">
+        <M.Box style={{ marginTop: 16 }} className="scroll embassy">
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>

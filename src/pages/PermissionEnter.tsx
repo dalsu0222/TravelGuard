@@ -52,11 +52,11 @@ export default function PermissionEnter() {
   return (
     <G.Container>
       <G.mw>
-        <h1 style={{ fontSize: 32 }}>국가별 입국 허가요건</h1>
-        <p style={{ fontSize: 20 }}>
+        <G.ResponsiveHeading>국가별 입국 허가요건</G.ResponsiveHeading>
+        <G.ResponsiveParagraph>
           국가별 입국가능기간, 입국가능여부, 입국시 소지여부를 확인할 수
           있습니다.
-        </p>
+        </G.ResponsiveParagraph>
 
         <M.Box style={{ marginTop: 16 }}>
           <Search

@@ -62,10 +62,12 @@ const CountryInfo = ({
         )}
       </div>
       <div>
-        <h2>
+        <G.ResponsiveHeading2>
           {country_nm} ({countryData?.alarm?.country_eng_nm})
-        </h2>
-        <p>{countryData?.alarm?.continent_nm || "대륙 정보 없음"}</p>
+        </G.ResponsiveHeading2>
+        <G.ResponsiveParagraph>
+          {countryData?.alarm?.continent_nm || "대륙 정보 없음"}
+        </G.ResponsiveParagraph>
       </div>
     </M.Box>
   );
@@ -129,8 +131,8 @@ const SafetyNotices = ({
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         {selectedNotice && (
           <div>
-            <h2>{selectedNotice.title}</h2>
-            <p>
+            <G.ResponsiveHeading2>{selectedNotice.title}</G.ResponsiveHeading2>
+            <G.ResponsiveParagraph>
               작성일: {selectedNotice.wrt_dt}{" "}
               {selectedNotice.file_download_url && (
                 <FontAwesomeIcon
@@ -141,7 +143,7 @@ const SafetyNotices = ({
                   style={{ cursor: "pointer", marginLeft: "5px" }}
                 />
               )}
-            </p>
+            </G.ResponsiveParagraph>
             <D.NoticeContent
               dangerouslySetInnerHTML={{ __html: selectedNotice.txt_origin_cn }}
             />
@@ -219,7 +221,7 @@ const EmbassyInfo = ({
       ) : embassyDataList.length > 0 ? (
         embassyDataList.map((embassy, index) => (
           <M.Box key={index} style={{ marginTop: 16 }}>
-            <table style={{ width: "100%" }}>
+            <D.InfoTable>
               <tbody>
                 <D.InfoTr>
                   <D.InfoTd>대사관 이름</D.InfoTd>
@@ -238,7 +240,7 @@ const EmbassyInfo = ({
                   <td>{embassy.urgency_tel_no}</td>
                 </D.InfoTr>
               </tbody>
-            </table>
+            </D.InfoTable>
           </M.Box>
         ))
       ) : (
@@ -302,18 +304,18 @@ export default function CountryDetail() {
         >
           <FontAwesomeIcon icon={faChevronLeft} color="#fff" />
         </D.backBtn>
-        <h1 style={{ fontSize: 32 }}>국가별 상세정보</h1>
-        <p style={{ fontSize: 20 }}>
+        <G.ResponsiveHeading>국가별 상세정보</G.ResponsiveHeading>
+        <G.ResponsiveParagraph>
           국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할
           수 있습니다.
-        </p>
+        </G.ResponsiveParagraph>
         {countryData.alarm ? (
           <>
             <CountryInfo
               countryData={countryData}
               country_nm={country_nm || ""}
             />
-            <div style={{ display: "flex", marginTop: 16, gap: 16 }}>
+            <D.FlexContainer>
               <M.Box style={{ flex: 0.7, aspectRatio: "4/3" }}>
                 <D.MapContainer>
                   <D.MapImage
@@ -340,7 +342,7 @@ export default function CountryDetail() {
                   country_nm={country_nm || ""}
                 />
               </D.SafetyCon>
-            </div>
+            </D.FlexContainer>
             <EmbassyInfo
               embassyDataList={embassyDataList}
               isLoading={embassyLoading}
@@ -358,10 +360,9 @@ export default function CountryDetail() {
           onClose={() => setIsMapModalOpen(false)}
           name="map"
         >
-          <img
+          <D.ModalMapImage
             src={countryData?.alarm?.dang_map_download_url}
             alt="여행경보지도"
-            style={{ width: "98%", height: "auto" }}
           />
         </Modal>
       </G.mw>

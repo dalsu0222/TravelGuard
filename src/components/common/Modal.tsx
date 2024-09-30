@@ -64,9 +64,14 @@ const ModalContent = styled.div<ModalContentProps>`
   /* Firefox에서의 스크롤바 스타일 */
   scrollbar-width: thin;
   scrollbar-color: rgba(127, 169, 255, 0.5) rgba(127, 169, 255, 0.1);
+
+  @media (max-width: 768px) {
+    max-width: ${(props) => (props.isMap ? "100%" : "80%")};
+    padding: ${(props) => (props.isMap ? "5px" : "")};
+  }
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled.button<ModalContentProps>`
   position: absolute;
   top: 10px;
   right: 10px;
@@ -75,6 +80,10 @@ const CloseButton = styled.button`
   font-size: 24px;
   cursor: pointer;
   color: #fff;
+  @media (max-width: 768px) {
+    color: ${(props) => (props.isMap ? "#000" : "")};
+    margin-right: 5px;
+  }
 `;
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, name }) => {
@@ -83,7 +92,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, name }) => {
   return (
     <ModalOverlay onClick={onClose}>
       <ModalContent isMap={name === "map"} onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <CloseButton onClick={onClose} isMap={name === "map"}>
+          &times;
+        </CloseButton>
         {children}
       </ModalContent>
     </ModalOverlay>

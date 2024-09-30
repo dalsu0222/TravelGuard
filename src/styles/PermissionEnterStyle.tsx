@@ -13,6 +13,11 @@ export const th = styled.th`
     rgba(8, 8, 8, 0.8);
   color: #7fa9ff;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    font-size: smaller;
+    padding: 8px;
+  }
 `;
 
 export const td = styled.td`
@@ -38,4 +43,18 @@ export const td = styled.td`
     display: block;
     width: 100%;
   }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    padding: 8px;
+
+    & svg {
+      margin-left: 5px;
+      padding: 2px;
+    }
+  }
+`;
+export const ResponsiveTable = styled.div`
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 `;

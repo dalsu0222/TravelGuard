@@ -54,6 +54,13 @@ export const ResponsiveHeading = styled.h1`
   }
 `;
 
+export const ResponsiveHeading2 = styled.h2`
+  font-size: 28px;
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
 export const ResponsiveParagraph = styled.p`
   font-size: 20px;
   @media (max-width: 768px) {
