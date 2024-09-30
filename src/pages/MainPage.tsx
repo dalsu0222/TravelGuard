@@ -132,11 +132,11 @@ export default function MainPage() {
   return (
     <G.Container>
       <G.mw>
-        <h1 style={{ fontSize: 32 }}>국가/지역별 정보</h1>
-        <p style={{ fontSize: 20 }}>
+        <G.ResponsiveHeading>국가/지역별 정보</G.ResponsiveHeading>
+        <G.ResponsiveParagraph>
           국가/지역별 현지 연락처, 사건 사고정보, 문화 등 다양한 정보를
           제공합니다.
-        </p>
+        </G.ResponsiveParagraph>
 
         <M.Box style={{ marginTop: 16 }}>
           {/* <M.TabsContainer>

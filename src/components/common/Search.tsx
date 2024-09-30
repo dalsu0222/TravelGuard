@@ -14,6 +14,10 @@ const Input = styled.input`
   &::placeholder {
     color: #aeaeae;
   }
+  @media (max-width: 768px) {
+    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+    font-size: smaller;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -22,6 +26,11 @@ const IconWrapper = styled.div`
   top: 50%;
   transform: translateY(-50%);
   color: #f0f0f0;
+
+  @media (max-width: 768px) {
+    left: 0.75rem;
+    font-size: smaller;
+  }
 `;
 
 export default function Search({

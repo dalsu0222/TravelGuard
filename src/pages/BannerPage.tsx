@@ -62,7 +62,7 @@ const BannerPage: React.FC = () => {
           {
             lat: 35.9078,
             lng: 127.7669,
-            altitude: isMobile ? 5 : 3,
+            altitude: isMobile ? 4 : 3,
           },
           0
         );
