@@ -13,7 +13,7 @@ export const globeConfig = {
     // backgroundColor: "#040019",
     globeImageUrl: "//unpkg.com/three-globe/example/img/earth-day.jpg",
     atmosphereColor: "#9bbafa",
-    atmosphereAltitude: 0.25,
+    atmosphereAltitude: 0.3,
     polygonSideColor: () => "rgba(102, 153, 255, 0.25)",
     polygonStrokeColor: () => "#818181",
     polygonsTransitionDuration: 300,

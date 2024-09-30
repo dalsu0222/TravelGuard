@@ -15,6 +15,8 @@ import {
   TRAVEL_ADVISORY_LEVELS,
   COLOR_SCALE,
 } from "../utils/constant/travelAdvisory";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const BannerPage: React.FC = () => {
   const [hoverD, setHoverD] = useState<GeoJsonFeature | null>(null);
@@ -29,6 +31,7 @@ const BannerPage: React.FC = () => {
     const { innerWidth, innerHeight } = window;
     setDimensions({ width: innerWidth, height: innerHeight });
   }, []);
+  const [isCardExpanded, setIsCardExpanded] = useState(false);
   const { data: countriesData, isLoading, error } = useCountriesData();
   const navigate = useNavigate();
 
@@ -54,11 +57,12 @@ const BannerPage: React.FC = () => {
     ) {
       // 데이터가 로드되고 Globe 컴포넌트가 마운트된 후 카메라 위치 설정
       setTimeout(() => {
+        const isMobile = window.innerWidth <= 768;
         globeRef.current.pointOfView(
           {
             lat: 35.9078,
             lng: 127.7669,
-            altitude: 3,
+            altitude: isMobile ? 5 : 3,
           },
           0
         );
@@ -109,7 +113,7 @@ const BannerPage: React.FC = () => {
               }}
             />
           )}
-        <B.expCard>
+        {/* <B.expCard>
           {TRAVEL_ADVISORY_LEVELS.slice(0, 5).map((level, index) => (
             <B.stepCol key={index}>
               <TravelStep number={index as 0 | 1 | 2 | 3 | 4} />
@@ -119,7 +123,31 @@ const BannerPage: React.FC = () => {
               </div>
             </B.stepCol>
           ))}
-        </B.expCard>
+        </B.expCard> */}
+        <B.ExpCard isExpanded={isCardExpanded}>
+          <B.CardHeader
+            onClick={() => setIsCardExpanded(!isCardExpanded)}
+            style={{ display: window.innerWidth <= 768 ? "block" : "none" }}
+          >
+            {isCardExpanded ? (
+              <FontAwesomeIcon icon={faChevronDown} size="2x" />
+            ) : (
+              <FontAwesomeIcon icon={faChevronUp} size="2x" />
+            )}
+            <span>여행 경보 단계</span>
+          </B.CardHeader>
+          <B.CardContent>
+            {TRAVEL_ADVISORY_LEVELS.slice(0, 5).map((level, index) => (
+              <B.StepCol key={index}>
+                <TravelStep number={index as 0 | 1 | 2 | 3 | 4} />
+                <div style={{ fontSize: "14px", flexGrow: 1 }}>
+                  <p>{level.description}</p>
+                  {level.additionalInfo && <p>{level.additionalInfo}</p>}
+                </div>
+              </B.StepCol>
+            ))}
+          </B.CardContent>
+        </B.ExpCard>
       </div>
     </G.Wrap>
   );

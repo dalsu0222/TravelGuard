@@ -6,7 +6,6 @@ const mq = facepaint(breakpoints.map((bp) => `@media (min-width: ${bp}px)`));
 
 export const HeaderCon = styled.header`
   background-color: #020010;
-  /* background-color: red; */
   border-bottom: 1px solid #333;
   position: fixed;
   top: 0;
@@ -29,24 +28,66 @@ export const HeaderCon = styled.header`
     ],
   })}
   z-index: 999;
+  @media (max-width: 768px) {
+    justify-content: center;
+    border-bottom: 1px solid #333;
+  }
 `;
 
 export const LogoCon = styled.div`
   cursor: pointer;
   padding: 2rem 3rem;
+  @media (max-width: 768px) {
+    padding: 1rem 0.5rem;
+    &.desktop-only {
+      display: none;
+    }
+  }
 `;
 
 export const Logo = styled.img`
   /* width: 310.713px; */
   height: 10px;
   width: 150px;
+  /* height: 10px;
+  width: auto; */
+  @media (max-width: 768px) {
+    height: 10px;
+    width: auto;
+  }
 `;
 
-export const Nav = styled.nav`
+export const MobileMenuIcon = styled.div`
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  font-size: 24px; // Font Awesome 아이콘 크기 조정
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const Nav = styled.nav<{ isOpen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* width: 100%; */
+  transition: all 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #020010;
+    border-top: 1px solid #333;
+    max-height: ${(props) => (props.isOpen ? "300px" : "0")};
+    overflow: hidden;
+    opacity: ${(props) => (props.isOpen ? 1 : 0)};
+    /* padding: 1rem 0; */
+    transition: all 0.3s ease-in-out;
+    justify-content: center;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -59,6 +100,9 @@ export const Ul = styled.ul`
   li:hover a {
     color: #7fa9ff;
     transition: color 0.3s ease-in-out;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
 `;
 
@@ -88,6 +132,12 @@ export const Li = styled.li<LiProps>`
 
   a {
     color: ${(props) => (props.isActive ? "#7FA9FF" : "white")};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 1rem;
   }
 `;
 

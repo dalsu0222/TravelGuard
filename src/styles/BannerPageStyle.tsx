@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const expCard = styled.div`
+export const ExpCard = styled.div<{ isExpanded: boolean }>`
   /* width: 352px; */
   position: absolute;
   bottom: 1rem;
@@ -22,11 +22,47 @@ export const expCard = styled.div`
     ),
     rgba(8, 8, 8, 0.8)
   );
+  @media (max-width: 768px) {
+    transform: translateY(
+      ${(props) => (props.isExpanded ? "0" : "calc(100% - 40px)")}
+    );
+    left: 1rem;
+    right: 1rem;
+    transition: all 0.3s ease-in-out;
+  }
 `;
 
-export const stepCol = styled.div`
+export const StepCol = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   /* gap: 1rem; */
+  margin: 0.5rem 0;
+  @media (max-width: 768px) {
+    & * {
+      font-size: small;
+    }
+  }
+`;
+
+export const CardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  svg {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  span {
+    color: white;
+  }
+`;
+export const CardContent = styled.div`
+  /* padding: 0.5rem; */
+  max-height: 60vh;
+  overflow-y: auto;
 `;
