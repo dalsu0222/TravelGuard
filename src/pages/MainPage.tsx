@@ -170,7 +170,7 @@ export default function MainPage() {
               onClick={() => setSelectedLevel(tab.key)}
             >
               {tab.key >= 0 ? (
-                <ColorBadge number={tab.color as 1 | 2 | 3 | 4} />
+                <ColorBadge number={tab.color as 0 | 1 | 2 | 3 | 4} />
               ) : (
                 ""
               )}

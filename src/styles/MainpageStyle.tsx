@@ -51,7 +51,7 @@ export const Box = styled.div`
   @media (max-width: 768px) {
     padding: 12px;
     &.scroll {
-      max-height: calc(100vh - 300px - 3rem - 2rem);
+      max-height: calc(100vh - 310px - 3rem - 2rem);
     }
   }
 `;
@@ -92,12 +92,12 @@ export const TabsContainer2 = styled.div`
   margin-bottom: 1rem;
   font-size: 14px;
 
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  /* overflow-x: auto;
+  -webkit-overflow-scrolling: touch; */
 
   @media (max-width: 768px) {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 
@@ -134,6 +134,7 @@ export const Tab2 = styled.div`
   @media (max-width: 768px) {
     padding: 0.75rem;
     font-size: smaller;
+    flex: 1 1 auto;
   }
 `;
 
