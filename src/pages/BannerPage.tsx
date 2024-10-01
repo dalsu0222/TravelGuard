@@ -63,7 +63,7 @@ const BannerPage: React.FC = () => {
             lng: 127.7669,
             altitude: isMobile ? 2.5 : 3,
           },
-          1000 // 전환 시간을 1초로 설정
+          4000 // 전환 시간을 4초로 설정, 부드럽게 이동
         );
       };
 
