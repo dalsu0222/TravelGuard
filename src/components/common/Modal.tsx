@@ -65,7 +65,7 @@ const ModalContent = styled.div<ModalContentProps>`
   scrollbar-width: thin;
   scrollbar-color: rgba(127, 169, 255, 0.5) rgba(127, 169, 255, 0.1);
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     max-width: ${(props) => (props.isMap ? "100%" : "80%")};
     padding: ${(props) => (props.isMap ? "5px" : "")};
   }
@@ -80,7 +80,7 @@ const CloseButton = styled.button<ModalContentProps>`
   font-size: 24px;
   cursor: pointer;
   color: #fff;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     color: ${(props) => (props.isMap ? "#000" : "")};
     margin-right: 5px;
   }

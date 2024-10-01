@@ -22,7 +22,7 @@ export const ExpCard = styled.div<{ isExpanded: boolean }>`
     ),
     rgba(8, 8, 8, 0.8)
   );
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     transform: translateY(
       ${(props) => (props.isExpanded ? "0" : "calc(100% - 60px)")}
     );
@@ -38,7 +38,7 @@ export const StepCol = styled.div`
   justify-content: space-between;
   /* gap: 1rem; */
   margin: 0.5rem 0;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     & * {
       font-size: small;
     }

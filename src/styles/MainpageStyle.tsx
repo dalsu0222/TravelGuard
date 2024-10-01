@@ -51,7 +51,7 @@ export const Box = styled.div`
     scrollbar-color: rgba(127, 169, 255, 0.5) rgba(127, 169, 255, 0.1);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 12px;
     &.scroll {
       max-height: calc(100vh - 310px - 3rem - 2rem);
@@ -104,7 +104,7 @@ export const TabsContainer2 = styled.div`
   /* overflow-x: auto;
   -webkit-overflow-scrolling: touch; */
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -140,7 +140,7 @@ export const Tab2 = styled.div`
     background-color: #151524;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 0.75rem;
     font-size: smaller;
     flex: 1 1 auto;
@@ -152,7 +152,7 @@ export const GridUl = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 16px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 12px;
   }
@@ -162,7 +162,7 @@ export const Li = styled.li`
   display: inline-block;
   margin-right: 1rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     margin-right: 0.5rem;
     font-size: smaller;
   }

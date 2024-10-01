@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import facepaint from "facepaint";
 
-const breakpoints = [576, 768, 992, 1200, 1500];
+const breakpoints = [576, 1000, 992, 1200, 1500];
 const mq = facepaint(breakpoints.map((bp) => `@media (min-width: ${bp}px)`));
 
 export const HeaderCon = styled.header`
@@ -28,7 +28,7 @@ export const HeaderCon = styled.header`
     ],
   })}
   z-index: 999;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     justify-content: center;
     border-bottom: 1px solid #333;
   }
@@ -37,7 +37,7 @@ export const HeaderCon = styled.header`
 export const LogoCon = styled.div`
   cursor: pointer;
   padding: 2rem 3rem;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 1rem 0.5rem;
     &.desktop-only {
       display: none;
@@ -51,7 +51,7 @@ export const Logo = styled.img`
   width: 150px;
   /* height: 10px;
   width: auto; */
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     height: 10px;
     width: auto;
   }
@@ -63,7 +63,7 @@ export const MobileMenuIcon = styled.div`
   position: absolute;
   right: 1rem;
   font-size: 24px; // Font Awesome 아이콘 크기 조정
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     display: block;
   }
 `;
@@ -74,7 +74,7 @@ export const Nav = styled.nav<{ isOpen: boolean }>`
   align-items: center;
   /* width: 100%; */
   transition: all 0.3s ease-in-out;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     position: absolute;
     top: 100%;
     left: 0;
@@ -101,7 +101,7 @@ export const Ul = styled.ul`
     color: #7fa9ff;
     transition: color 0.3s ease-in-out;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
   }
 `;
@@ -128,7 +128,7 @@ export const Li = styled.li<LiProps>`
     color: ${(props) => (props.isActive ? "#7FA9FF" : "white")};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100%;
     text-align: center;
     padding: 1.5rem 1rem;

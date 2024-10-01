@@ -11,7 +11,7 @@ const GlobalStyle = () => (
       }
       body {
         font-size: 16px;
-        @media (max-width: 768px) {
+        @media (max-width: 1000px) {
           font-size: 12px; // smaller
         }
       }
@@ -29,7 +29,7 @@ export const Container = styled.div`
   width: 100%;
   margin-top: 86.48px;
   overflow-x: hidden;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     margin-top: 57px;
   }
 `;
@@ -41,7 +41,7 @@ export const mw = styled.div`
   /* min-width: 800px; */
   margin: 2rem auto;
   position: relative;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: calc(100% - 32px);
     margin: 1rem auto;
   }
@@ -49,21 +49,21 @@ export const mw = styled.div`
 
 export const ResponsiveHeading = styled.h1`
   font-size: 32px;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: 24px;
   }
 `;
 
 export const ResponsiveHeading2 = styled.h2`
   font-size: 28px;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: 20px;
   }
 `;
 
 export const ResponsiveParagraph = styled.p`
   font-size: 20px;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: 16px;
   }
 `;

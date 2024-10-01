@@ -14,7 +14,7 @@ export const th = styled.th`
   color: #7fa9ff;
   z-index: 1;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: smaller;
     padding: 8px;
   }
@@ -44,7 +44,7 @@ export const td = styled.td`
     width: 100%;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: 12px;
     padding: 8px;
 

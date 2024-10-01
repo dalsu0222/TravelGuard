@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Globe from "react-globe.gl";
 import * as G from "../styles/GlobalStyle";
 import * as B from "../styles/BannerPageStyle";
@@ -34,41 +34,49 @@ const BannerPage: React.FC = () => {
   const [isCardExpanded, setIsCardExpanded] = useState(false);
   const { data: countriesData, isLoading, error } = useCountriesData();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [key, setKey] = useState(0); // 강제 리렌더링을 위한 키
 
+  const updateDimensions = useCallback(() => {
+    if (globeContainerRef.current) {
+      const { offsetWidth, offsetHeight } = globeContainerRef.current;
+      setDimensions({ width: offsetWidth, height: offsetHeight });
+    }
+  }, []);
   useEffect(() => {
-    const updateDimensions = () => {
-      if (globeContainerRef.current) {
-        const { offsetWidth, offsetHeight } = globeContainerRef.current;
-        setDimensions({ width: offsetWidth, height: offsetHeight });
-      }
-    };
-
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
-
     return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
+  }, [updateDimensions]);
 
   useEffect(() => {
-    if (
-      countriesData &&
-      countriesData.features.length > 0 &&
-      globeRef.current
-    ) {
-      // 데이터가 로드되고 Globe 컴포넌트가 마운트된 후 카메라 위치 설정
-      setTimeout(() => {
-        const isMobile = window.innerWidth <= 768;
+    setKey((prevKey) => prevKey + 1); // 라우트 변경 시 강제 리렌더링
+  }, [location]);
+
+  useEffect(() => {
+    if ((countriesData?.features?.length ?? 0) > 0 && globeRef.current) {
+      const setInitialView = () => {
+        const isMobile = window.innerWidth <= 1000;
         globeRef.current.pointOfView(
           {
             lat: 35.9078,
             lng: 127.7669,
-            altitude: isMobile ? 4 : 3,
+            altitude: isMobile ? 2.5 : 3,
           },
-          0
+          1000 // 전환 시간을 1초로 설정
         );
-      }, 100); // 약간의 지연을 주어 Globe 컴포넌트가 완전히 렌더링되도록 함
+      };
+
+      // Globe 컴포넌트의 onGlobeReady 이벤트 사용
+      if (globeRef.current.scene) {
+        setInitialView();
+      } else {
+        globeRef.current.onGlobeReady(() => {
+          setInitialView();
+        });
+      }
     }
-  }, [countriesData]);
+  }, [countriesData, key]); // key를 의존성 배열에 추가
 
   if (isLoading) return <div>Loading...</div>; // 나중에 로딩스피너로 대체
   if (error) return <div>Error: {String(error)}</div>;
@@ -89,6 +97,7 @@ const BannerPage: React.FC = () => {
         {dimensions.width > 0 &&
           dimensions.height > 0 && ( // 조건부 렌더링
             <Globe
+              key={key} // 강제 리렌더링을 위한 키 추가
               ref={globeRef}
               width={dimensions.width}
               height={dimensions.height}
@@ -116,7 +125,7 @@ const BannerPage: React.FC = () => {
         <B.ExpCard isExpanded={isCardExpanded}>
           <B.CardHeader
             onClick={() => setIsCardExpanded(!isCardExpanded)}
-            style={{ display: window.innerWidth <= 768 ? "block" : "none" }}
+            style={{ display: window.innerWidth <= 1000 ? "block" : "none" }}
           >
             {isCardExpanded ? (
               <FontAwesomeIcon icon={faChevronDown} size="2x" />

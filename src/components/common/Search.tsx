@@ -14,7 +14,7 @@ const Input = styled.input`
   &::placeholder {
     color: #aeaeae;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 0.75rem 0.75rem 0.75rem 2.5rem;
     font-size: smaller;
   }
@@ -27,7 +27,7 @@ const IconWrapper = styled.div`
   transform: translateY(-50%);
   color: #f0f0f0;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     left: 0.75rem;
     font-size: smaller;
   }

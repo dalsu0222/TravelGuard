@@ -6,7 +6,7 @@ export const FlagImg = styled.img`
   transform: translateY(3px);
   margin-right: 1rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     max-width: 60px;
   }
 `;
@@ -24,7 +24,7 @@ export const TableTr = styled.tr`
   padding: 0.7rem 5px;
   border-bottom: 1px solid #5e5e5e;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -36,7 +36,7 @@ export const TableTd = styled.td`
   text-overflow: ellipsis;
   /* max-width: 300px;  */
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     white-space: normal;
     margin-bottom: 0.5rem;
   }
@@ -47,7 +47,7 @@ export const InfoTr = styled.tr`
   justify-content: space-between;
   padding: 0.7rem 5px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -58,7 +58,7 @@ export const InfoTd = styled.td`
   color: #7fa9ff;
   margin-right: 10px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     white-space: normal;
     max-width: 100%;
     margin-bottom: 0.5rem;
@@ -76,7 +76,7 @@ export const backBtn = styled.button`
   transform: translate(-100%);
   left: -16px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     // 모바일 화면일 때 뒤로가기 버튼 넣는게 좋은지?.. 넣으려니 디자인적으로 배치가 애매함
     /* padding: 0.3rem 0.8rem;
     right: 0;
@@ -114,7 +114,7 @@ export const MapButton = styled.button`
   z-index: 10;
   border-radius: 5px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     padding: 3px;
   }
 `;
@@ -125,7 +125,7 @@ export const SafetyCon = styled.div`
   flex: 1;
   gap: 16px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     gap: 12px;
     font-size: smaller;
   }
@@ -150,7 +150,7 @@ export const NoticeContent = styled.div`
     color: black !important;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     & * {
       font-size: small !important;
       color: white !important;
@@ -190,7 +190,7 @@ export const ModalMapImage = styled.img`
   height: auto;
   max-height: 80vh;
   object-fit: contain;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     width: 100%;
   }
 `;
@@ -207,7 +207,7 @@ export const FlexContainer = styled.div`
 
 export const InfoTable = styled.table`
   width: 100%;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     font-size: smaller;
   }
 `;
