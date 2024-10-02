@@ -54,43 +54,16 @@ export const Box = styled.div`
   @media (max-width: 1000px) {
     padding: 12px;
     &.scroll {
-      max-height: calc(100vh - 310px - 3rem - 2rem);
+      max-height: calc(100vh - 310px - 2rem);
       &.permission {
-        max-height: calc(100vh - 240px - 3rem);
+        max-height: calc(100vh - 235px - 3rem);
       }
       &.embassy {
-        max-height: calc(100vh - 215px - 3rem);
+        max-height: calc(100vh - 235px - 3rem);
       }
     }
   }
 `;
-
-// export const TabsContainer = styled.div`
-//   display: flex;
-//   /* justify-content: space-between; */
-//   /* background-color: #e29afe */
-//   /* padding: 1rem; */
-//   border-radius: 8px;
-//   margin-bottom: 1rem;
-// `;
-
-// export const Tab = styled.div`
-//   /* flex: 1; */
-//   text-align: center;
-//   padding: 0.5rem 1rem 1rem 1rem;
-//   cursor: pointer;
-//   color: #f0f0f0;
-//   border-bottom: 2px solid transparent;
-
-//   &.active {
-//     border-bottom: 2px solid #7fa9ff;
-//     color: #7fa9ff;
-//   }
-
-//   &:hover {
-//     background-color: #151524;
-//   }
-// `;
 
 export const TabsContainer2 = styled.div`
   display: flex;
@@ -161,6 +134,15 @@ export const GridUl = styled.ul`
 export const Li = styled.li`
   display: inline-block;
   margin-right: 1rem;
+  /* border: 1px solid #333; */
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: rgba(127, 169, 255, 0.2);
+    color: #7fa9ff;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
 
   @media (max-width: 1000px) {
     margin-right: 0.5rem;

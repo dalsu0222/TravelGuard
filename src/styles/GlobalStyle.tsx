@@ -27,10 +27,12 @@ export const Wrap = styled.div`
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  margin-top: 86.48px;
+  margin-top: 90.47px;
   overflow-x: hidden;
+  height: calc(100vh - 90.47px);
   @media (max-width: 1000px) {
     margin-top: 57px;
+    height: calc(100vh - 57px);
   }
 `;
 

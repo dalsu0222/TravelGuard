@@ -9,42 +9,13 @@ import {
   wbRegionMap,
   subregionMap,
 } from "../utils/constant/regionsMap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function MainPage() {
-  // const [activeTab, setActiveTab] = useState("국가/지역별");
   const [selectedLevel, setSelectedLevel] = useState(-1);
   const { data: countriesData, isLoading, error } = useCountriesData();
   const [searchTerm, setSearchTerm] = useState("");
-
-  // unique한 대륙 이름 확인 절차.
-  // const uniqueRegions = () => {
-  //   if (!countriesData || !countriesData.features)
-  //     return { REGION_UN: [], REGION_WB: [], SUBREGION: [] };
-
-  //   // REGION_UN, REGION_WB, SUBREGION 필드에서 고유한 값 추출
-  //   const regionUNSet = new Set(
-  //     countriesData.features.map((country) => country.properties.REGION_UN)
-  //   );
-  //   const regionWBSet = new Set(
-  //     countriesData.features.map((country) => country.properties.REGION_WB)
-  //   );
-  //   const subregionSet = new Set(
-  //     countriesData.features.map((country) => country.properties.SUBREGION)
-  //   );
-
-  //   return {
-  //     REGION_UN: Array.from(regionUNSet),
-  //     REGION_WB: Array.from(regionWBSet),
-  //     SUBREGION: Array.from(subregionSet),
-  //   };
-  // };
-
-  // const regions = uniqueRegions();
-
-  // console.log("Unique REGION_UN:", regions.REGION_UN);
-  // console.log("Unique REGION_WB:", regions.REGION_WB);
-  // console.log("Unique SUBREGION:", regions.SUBREGION);
+  const navigate = useNavigate();
 
   const getLevelColor = (level: string | null): 0 | 1 | 2 | 3 | 4 => {
     if (level === null || level === "없음" || level.startsWith("0단계"))
@@ -129,6 +100,10 @@ export default function MainPage() {
     setSearchTerm(value);
   }, []);
 
+  const goToDetail = (country: string) => {
+    navigate(`/${country}`);
+  };
+
   return (
     <G.Container>
       <G.mw>
@@ -139,20 +114,6 @@ export default function MainPage() {
         </G.ResponsiveParagraph>
 
         <M.Box style={{ marginTop: 16 }}>
-          {/* <M.TabsContainer>
-            <M.Tab
-              className={activeTab === "국가/지역별" ? "active" : ""}
-              onClick={() => setActiveTab("국가/지역별")}
-            >
-              국가/지역별
-            </M.Tab>
-            <M.Tab
-              className={activeTab === "대륙별" ? "active" : ""}
-              onClick={() => setActiveTab("대륙별")}
-            >
-              대륙별
-            </M.Tab>
-          </M.TabsContainer> */}
           <Search onSearch={handleSearch} />
         </M.Box>
         <M.TabsContainer2 style={{ marginTop: 16 }}>
@@ -186,15 +147,15 @@ export default function MainPage() {
               {filteredCountries.map((country) => (
                 <M.Li
                   key={`${country.properties.ISO_A2}-${country.properties.ADMIN}`}
+                  onClick={() => goToDetail(country.properties.country_nm)}
                 >
                   <ColorBadge
                     number={getLevelColor(
                       country.properties.travelAdvisoryLevel ?? "null"
                     )}
                   />
-                  <Link to={`/${country.properties.country_nm}`}>
-                    {country.properties.country_nm}{" "}
-                  </Link>
+
+                  {country.properties.country_nm}
                 </M.Li>
               ))}
             </M.GridUl>

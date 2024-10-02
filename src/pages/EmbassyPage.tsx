@@ -15,10 +15,10 @@ interface EmbassyData {
 
 const EmbassyRow = React.memo(({ embassy }: { embassy: EmbassyData }) => (
   <tr>
-    <P.td style={{ minWidth: 150 }}>{embassy.embassy_kor_nm}</P.td>
-    <P.td>{embassy.emblgbd_addr}</P.td>
-    <P.td style={{ minWidth: 170 }}>{embassy.urgency_tel_no}</P.td>
-    <P.td style={{ minWidth: 170 }}>{embassy.tel_no}</P.td>
+    <P.Td style={{ minWidth: 150 }}>{embassy.embassy_kor_nm}</P.Td>
+    <P.Td>{embassy.emblgbd_addr}</P.Td>
+    <P.Td style={{ minWidth: 170 }}>{embassy.urgency_tel_no}</P.Td>
+    <P.Td style={{ minWidth: 170 }}>{embassy.tel_no}</P.Td>
   </tr>
 ));
 
@@ -63,14 +63,14 @@ export default function EmbassyPage() {
         </M.Box>
         <M.Box style={{ marginTop: 16 }} className="scroll embassy">
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
+            <P.Thead>
               <tr>
-                <P.th>재외공관명</P.th>
-                <P.th>주소</P.th>
-                <P.th>긴급전화번호</P.th>
-                <P.th>전화번호</P.th>
+                <P.Th>재외공관명</P.Th>
+                <P.Th>주소</P.Th>
+                <P.Th>긴급전화번호</P.Th>
+                <P.Th>전화번호</P.Th>
               </tr>
-            </thead>
+            </P.Thead>
             <tbody>
               {filteredEmbassies.map((embassy, index) => (
                 <EmbassyRow key={index} embassy={embassy} />

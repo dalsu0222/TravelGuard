@@ -15,14 +15,42 @@
   --back-Linear: linear-gradient(180deg, #0a033a 0%, #040019 100%);
   /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
-  background-color: #040019;
-  /* background: var(--back-Linear); */
+  /* background-color: #040019; */
+  background: var(--back-Linear);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 4s) infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;

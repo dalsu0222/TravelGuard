@@ -3,7 +3,7 @@ import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
 import * as P from "../styles/PermissionEnterStyle";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData";
@@ -16,25 +16,28 @@ interface CountryData {
 }
 
 const CountryRow = React.memo(
-  (
-    { country }: { country: CountryData } // 불필요한 재렌더링 방지
-  ) => (
-    <tr>
-      <P.td>
-        <Link to={`/${country.국가}`}>
-          {country.국가} <FontAwesomeIcon icon={faArrowRightToBracket} />
-        </Link>
-      </P.td>
-      <P.td>{country["일반여권소지자-입국가능기간"]}</P.td>
-      <P.td>{country["일반여권소지자-입국가능여부"]}</P.td>
-      <P.td>{country["입국시 소지여부"]}</P.td>
-    </tr>
+  ({
+    country,
+    onRowClick,
+  }: {
+    country: CountryData;
+    onRowClick: (country: string) => void;
+  }) => (
+    <P.Tr onClick={() => onRowClick(country.국가)}>
+      <P.Td>
+        {country.국가} <FontAwesomeIcon icon={faArrowRightToBracket} />
+      </P.Td>
+      <P.Td>{country["일반여권소지자-입국가능기간"]}</P.Td>
+      <P.Td>{country["일반여권소지자-입국가능여부"]}</P.Td>
+      <P.Td>{country["입국시 소지여부"]}</P.Td>
+    </P.Tr>
   )
 );
 
 export default function PermissionEnter() {
   const { data: countries, isLoading, error } = usePermissionEnterData();
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const navigate = useNavigate();
 
   const filteredCountries = useMemo(() => {
     if (!countries) return [];
@@ -44,6 +47,10 @@ export default function PermissionEnter() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  const goToDetail = (country: string) => {
+    navigate(`/${country}`);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -69,21 +76,25 @@ export default function PermissionEnter() {
           />
         </M.Box>
         <M.Box style={{ marginTop: 16 }} className="scroll permission">
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
+          <P.Table>
+            <P.Thead>
               <tr>
-                <P.th>국가</P.th>
-                <P.th>입국가능기간</P.th>
-                <P.th>입국가능여부</P.th>
-                <P.th>입국시 소지여부</P.th>
+                <P.Th>국가</P.Th>
+                <P.Th>입국가능기간</P.Th>
+                <P.Th>입국가능여부</P.Th>
+                <P.Th>입국시 소지여부</P.Th>
               </tr>
-            </thead>
+            </P.Thead>
             <tbody>
               {filteredCountries.map((country, index) => (
-                <CountryRow key={index} country={country} />
+                <CountryRow
+                  key={index}
+                  country={country}
+                  onRowClick={goToDetail}
+                />
               ))}
             </tbody>
-          </table>
+          </P.Table>
         </M.Box>
       </G.mw>
     </G.Container>
