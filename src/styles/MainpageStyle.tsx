@@ -54,12 +54,12 @@ export const Box = styled.div`
   @media (max-width: 1000px) {
     padding: 12px;
     &.scroll {
-      max-height: calc(100vh - 310px - 2rem);
+      max-height: calc(100vh - 355px - 2rem);
       &.permission {
         max-height: calc(100vh - 235px - 3rem);
       }
       &.embassy {
-        max-height: calc(100vh - 235px - 3rem);
+        max-height: calc(100vh - 210px - 3rem);
       }
     }
   }
