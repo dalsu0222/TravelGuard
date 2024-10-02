@@ -17,6 +17,7 @@ import {
   faPaperclip,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import taiwanFlag from "/assets/img/taiwan.png";
 
 const API_KEY = import.meta.env.VITE_API_KEY_SAFE;
 
@@ -36,8 +37,7 @@ const fetchCountryData = async (country_nm: string) => {
 
     if (country_nm === "대만") {
       // 대만 국기 이미지가 없어, 별도로 대만 국기 이미지 추가
-      alarmResponse.data.data[0].flag_download_url =
-        "../../public/assets/img/taiwan.png";
+      alarmResponse.data.data[0].flag_download_url = taiwanFlag;
     }
 
     return {
