@@ -13,8 +13,29 @@ function createStars() {
     star.style.width = `${size}px`;
     star.style.height = `${size}px`;
 
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 100}%`;
+    // 별의 위치를 결정하는 로직 수정
+    let x, y;
+    const edge = Math.random();
+    if (edge < 0.25) {
+      // 왼쪽 가장자리
+      x = `${Math.random() * 20}%`;
+      y = `${Math.random() * 100}%`;
+    } else if (edge < 0.5) {
+      // 오른쪽 가장자리
+      x = `${80 + Math.random() * 20}%`;
+      y = `${Math.random() * 100}%`;
+    } else if (edge < 0.75) {
+      // 위쪽 가장자리
+      x = `${Math.random() * 100}%`;
+      y = `${Math.random() * 20}%`;
+    } else {
+      // 아래쪽 가장자리
+      x = `${Math.random() * 100}%`;
+      y = `${80 + Math.random() * 20}%`;
+    }
+
+    star.style.left = x;
+    star.style.top = y;
 
     star.style.setProperty("--duration", `${Math.random() * 3 + 2}s`);
 
