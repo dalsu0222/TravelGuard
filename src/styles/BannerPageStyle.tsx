@@ -1,5 +1,14 @@
 import styled from "@emotion/styled";
 
+export const GlobeContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
 export const ExpCard = styled.div<{ isExpanded: boolean }>`
   /* width: 352px; */
   position: absolute;
@@ -65,4 +74,16 @@ export const CardContent = styled.div`
   /* padding: 0.5rem; */
   max-height: 60vh;
   overflow-y: auto;
+`;
+
+export const CustomLabel = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(35, 35, 35, 0.4);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  pointer-events: none;
 `;
