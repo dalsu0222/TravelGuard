@@ -38,6 +38,9 @@ const fetchCountriesData = async (): Promise<{
       if (countryName === "미합중국") {
         countryName = "미국";
       }
+      if (countryName === "튀르키예공화국") {
+        countryName = "튀르키예";
+      }
 
       return {
         ...country,

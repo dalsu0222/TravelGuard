@@ -272,7 +272,11 @@ export default function CountryDetail() {
   useEffect(() => {
     if (country_nm) {
       const modifiedCountryName =
-        country_nm === "미국" ? "미합중국" : country_nm;
+        country_nm === "미국"
+          ? "미합중국"
+          : country_nm === "튀르키예"
+          ? "튀르키예공화국"
+          : country_nm;
       fetchCountryData(modifiedCountryName)
         .then((data) => {
           setCountryData({ safety: data.safety, alarm: data.alarm });
