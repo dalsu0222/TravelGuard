@@ -46,10 +46,10 @@ export const useGlobeView = ({
   const setInitialView = useCallback(() => {
     if (globeRef.current && !initialViewSet.current) {
       const view = loadSavedView();
-      const isMobile = window.innerWidth <= 1000;
-      if (isMobile) {
-        view.altitude = 2.5;
-      }
+      // const isMobile = window.innerWidth <= 1000;
+      // if (isMobile) {
+      //   view.altitude = 2.5;
+      // }
       globeRef.current.pointOfView(view, 2000);
       initialViewSet.current = true;
     }
