@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Globe from "react-globe.gl";
 import * as G from "../styles/GlobalStyle";
@@ -27,7 +27,7 @@ const BannerPage: React.FC = () => {
   const navigate = useNavigate();
 
   const dimensions = useResponsiveDimensions(globeContainerRef);
-  const { key } = useGlobeView({
+  const { key, saveCurrentView } = useGlobeView({
     globeRef,
     countriesData: countriesData ?? null,
   });
@@ -52,10 +52,17 @@ const BannerPage: React.FC = () => {
   const handlePolygonClick = useCallback(
     (polygon: object) => {
       const geoPolygon = polygon as GeoJsonFeature;
+      saveCurrentView();
       navigate(`/${geoPolygon.properties.country_nm}`);
     },
-    [navigate]
+    [navigate, saveCurrentView]
   );
+
+  useEffect(() => {
+    return () => {
+      saveCurrentView();
+    };
+  }, [saveCurrentView]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {String(error)}</div>;

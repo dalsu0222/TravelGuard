@@ -78,7 +78,36 @@ export const Td = styled.td`
     }
   }
 `;
+
 export const ResponsiveTable = styled.div`
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  @media (max-width: 1000px) {
+    th,
+    td {
+      word-break: break-word; // 가로 스크롤 없애기
+    }
+
+    th:nth-of-type(1),
+    td:nth-of-type(1) {
+      width: 20%;
+    }
+    th:nth-of-type(2),
+    td:nth-of-type(2) {
+      width: 40%;
+    }
+    th:nth-of-type(3),
+    td:nth-of-type(3) {
+      width: 20%;
+    }
+    th:nth-of-type(4),
+    td:nth-of-type(4) {
+      width: 20%;
+    }
+  }
 `;
