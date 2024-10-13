@@ -7,17 +7,10 @@
 }
 
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: "Pretendard-Regular";
   line-height: 1.5;
   font-weight: 400;
-
-  --back-Linear: linear-gradient(180deg, #0a033a 0%, #040019 100%);
-  /* color-scheme: light dark; */
   color: rgba(255, 255, 255, 0.87);
-  /* background-color: #040019; */
-  background: var(--back-Linear);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -63,8 +56,11 @@ body {
   margin: 0;
   place-items: center;
   min-width: 320px;
-  /* min-height: 100vh; */
-  /* background: #040019; */
+  height: 100%;
+  min-height: 100vh;
+  --back-Linear: linear-gradient(180deg, #0a033a 0%, #040019 100%);
+  background: var(--back-Linear);
+  overflow-x: hidden;
 }
 li {
   list-style: none;

@@ -11,6 +11,8 @@ const GlobalStyle = () => (
       }
       body {
         font-size: 16px;
+        --back-Linear: linear-gradient(180deg, #0a033a 0%, #040019 100%);
+        background: var(--back-Linear);
         @media (max-width: 1000px) {
           font-size: 12px; // smaller
         }
@@ -22,25 +24,23 @@ const GlobalStyle = () => (
 export const Wrap = styled.div`
   position: relative;
   width: 100vw;
+  --back-Linear: linear-gradient(180deg, #0a033a 0%, #040019 100%);
+  background: var(--back-Linear);
 `;
 
 export const Container = styled.div`
   position: relative;
   width: 100%;
-  margin-top: 90.47px;
+  padding-top: 90.47px;
   overflow-x: hidden;
-  height: calc(100vh - 90.47px);
   @media (max-width: 1000px) {
-    margin-top: 57px;
-    height: calc(100vh - 57px);
+    padding-top: 57px;
   }
 `;
 
 export const mw = styled.div`
   max-width: 1300px;
-  /* width: calc(100% - 160px); */
   width: calc(100% - 180px);
-  /* min-width: 800px; */
   margin: 2rem auto;
   position: relative;
   @media (max-width: 1000px) {

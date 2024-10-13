@@ -5,6 +5,7 @@ import * as G from "../styles/GlobalStyle";
 import * as B from "../styles/BannerPageStyle";
 import SearchBar from "../components/common/SearchBar";
 import ExpCard from "../components/common/ExpCard";
+import Loading from "../components/common/Loading";
 import { useCountriesData } from "../utils/hooks/useCountriesData";
 import { useGlobeSearch } from "../utils/hooks/useGlobeSearch";
 import { useResponsiveDimensions } from "../utils/hooks/useResponsiveDimensions";
@@ -64,7 +65,7 @@ const BannerPage: React.FC = () => {
     };
   }, [saveCurrentView]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading fullScreen />;
   if (error) return <div>Error: {String(error)}</div>;
 
   return (

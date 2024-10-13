@@ -1,5 +1,16 @@
 import styled from "@emotion/styled";
 
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px; // 이 값은 필요에 따라 조정 가능합니다
+  background: rgba(8, 8, 8, 0.8);
+  border-radius: 8px;
+`;
+
+
 export const Box = styled.div`
   border-radius: 8px;
   border: 1px solid var(--box-stroke, #7fa9ff);
