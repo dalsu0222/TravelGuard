@@ -72,14 +72,11 @@ const BannerPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <html lang="ko" />
         <title>TravelGuard</title>
         <meta
           name="description"
           content="국가별 현지 연락처, 입국 허가요건, 사건 사고정보 등 다양한 정보를 제공합니다."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Helmet>
       <G.Wrap>
