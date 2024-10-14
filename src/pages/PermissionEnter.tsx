@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { usePermissionEnterData } from "../utils/hooks/usePermissionEnterData";
+import { Helmet } from "react-helmet";
 
 interface CountryData {
   국가: string;
@@ -57,46 +58,60 @@ export default function PermissionEnter() {
   if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
-    <G.Container>
-      <G.mw>
-        <G.ResponsiveHeading>국가별 입국 허가요건</G.ResponsiveHeading>
-        <G.ResponsiveParagraph>
-          국가별 입국가능기간, 입국가능여부, 입국시 소지여부를 확인할 수
-          있습니다.
-        </G.ResponsiveParagraph>
+    <>
+      <Helmet>
+        <title>입국 허가요건 정보</title>
+        <meta
+          name="description"
+          content="국가별 입국가능기간, 입국가능여부, 입국시 소지여부를 확인할 수 있습니다."
+        />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌏</text></svg>"
+        />
+      </Helmet>
 
-        <M.Box style={{ marginTop: 16 }}>
-          <Search
-            onSearch={(value: string) =>
-              handleSearchChange({
-                target: { value },
-              } as React.ChangeEvent<HTMLInputElement>)
-            }
-            placeholder="국가명을 입력하세요"
-          />
-        </M.Box>
-        <M.Box style={{ marginTop: 16 }} className="scroll permission">
-          <P.Table>
-            <P.Thead>
-              <tr>
-                <P.Th>국가</P.Th>
-                <P.Th>입국가능기간</P.Th>
-                <P.Th>입국가능여부</P.Th>
-                <P.Th>입국시 소지여부</P.Th>
-              </tr>
-            </P.Thead>
-            <tbody>
-              {filteredCountries.map((country, index) => (
-                <CountryRow
-                  key={index}
-                  country={country}
-                  onRowClick={goToDetail}
-                />
-              ))}
-            </tbody>
-          </P.Table>
-        </M.Box>
-      </G.mw>
-    </G.Container>
+      <G.Container>
+        <G.mw>
+          <G.ResponsiveHeading>국가별 입국 허가요건</G.ResponsiveHeading>
+          <G.ResponsiveParagraph>
+            국가별 입국가능기간, 입국가능여부, 입국시 소지여부를 확인할 수
+            있습니다.
+          </G.ResponsiveParagraph>
+
+          <M.Box style={{ marginTop: 16 }}>
+            <Search
+              onSearch={(value: string) =>
+                handleSearchChange({
+                  target: { value },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+              placeholder="국가명을 입력하세요"
+            />
+          </M.Box>
+          <M.Box style={{ marginTop: 16 }} className="scroll permission">
+            <P.Table>
+              <P.Thead>
+                <tr>
+                  <P.Th>국가</P.Th>
+                  <P.Th>입국가능기간</P.Th>
+                  <P.Th>입국가능여부</P.Th>
+                  <P.Th>입국시 소지여부</P.Th>
+                </tr>
+              </P.Thead>
+              <tbody>
+                {filteredCountries.map((country, index) => (
+                  <CountryRow
+                    key={index}
+                    country={country}
+                    onRowClick={goToDetail}
+                  />
+                ))}
+              </tbody>
+            </P.Table>
+          </M.Box>
+        </G.mw>
+      </G.Container>
+    </>
   );
 }

@@ -101,6 +101,7 @@ export const MapImage = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
+  cursor: pointer;
 `;
 
 export const MapButton = styled.button`

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import { Helmet } from "react-helmet";
 import Search from "../components/common/Search";
 import * as G from "../styles/GlobalStyle";
 import * as M from "../styles/MainpageStyle";
@@ -44,43 +45,57 @@ export default function EmbassyPage() {
   if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
-    <G.Container>
-      <G.mw>
-        <G.ResponsiveHeading>국가별 대사관 정보</G.ResponsiveHeading>
-        <G.ResponsiveParagraph>
-          국가별 대사관 위치, 연락처 등을 확인할 수 있습니다.
-        </G.ResponsiveParagraph>
+    <>
+      <Helmet>
+        <title>국가별 대사관 정보</title>
+        <meta
+          name="description"
+          content="국가별 대사관 위치, 연락처 등을 확인할 수 있습니다."
+        />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌏</text></svg>"
+        />
+      </Helmet>
 
-        <M.Box style={{ marginTop: 16 }}>
-          <Search
-            onSearch={(value: string) =>
-              handleSearchChange({
-                target: { value },
-              } as React.ChangeEvent<HTMLInputElement>)
-            }
-            placeholder="국가 또는 지역을 입력하세요"
-          />
-        </M.Box>
-        <M.Box style={{ marginTop: 16 }} className="scroll embassy">
-          <P.ResponsiveTable>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <P.Thead>
-                <tr>
-                  <P.Th>재외공관명</P.Th>
-                  <P.Th>주소</P.Th>
-                  <P.Th>긴급전화번호</P.Th>
-                  <P.Th>전화번호</P.Th>
-                </tr>
-              </P.Thead>
-              <tbody>
-                {filteredEmbassies.map((embassy, index) => (
-                  <EmbassyRow key={index} embassy={embassy} />
-                ))}
-              </tbody>
-            </table>
-          </P.ResponsiveTable>
-        </M.Box>
-      </G.mw>
-    </G.Container>
+      <G.Container>
+        <G.mw>
+          <G.ResponsiveHeading>국가별 대사관 정보</G.ResponsiveHeading>
+          <G.ResponsiveParagraph>
+            국가별 대사관 위치, 연락처 등을 확인할 수 있습니다.
+          </G.ResponsiveParagraph>
+
+          <M.Box style={{ marginTop: 16 }}>
+            <Search
+              onSearch={(value: string) =>
+                handleSearchChange({
+                  target: { value },
+                } as React.ChangeEvent<HTMLInputElement>)
+              }
+              placeholder="국가 또는 지역을 입력하세요"
+            />
+          </M.Box>
+          <M.Box style={{ marginTop: 16 }} className="scroll embassy">
+            <P.ResponsiveTable>
+              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                <P.Thead>
+                  <tr>
+                    <P.Th>재외공관명</P.Th>
+                    <P.Th>주소</P.Th>
+                    <P.Th>긴급전화번호</P.Th>
+                    <P.Th>전화번호</P.Th>
+                  </tr>
+                </P.Thead>
+                <tbody>
+                  {filteredEmbassies.map((embassy, index) => (
+                    <EmbassyRow key={index} embassy={embassy} />
+                  ))}
+                </tbody>
+              </table>
+            </P.ResponsiveTable>
+          </M.Box>
+        </G.mw>
+      </G.Container>
+    </>
   );
 }

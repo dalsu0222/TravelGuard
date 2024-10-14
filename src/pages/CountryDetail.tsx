@@ -18,6 +18,7 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import taiwanFlag from "/assets/img/taiwan.png";
+import { Helmet } from "react-helmet";
 
 const API_KEY = import.meta.env.VITE_API_KEY_SAFE;
 
@@ -301,73 +302,88 @@ export default function CountryDetail() {
   const goBack = () => navigate(-1);
 
   return (
-    <G.Container>
-      <G.mw>
-        <D.backBtn onClick={goBack}>
-          <FontAwesomeIcon icon={faChevronLeft} color="#fff" />
-        </D.backBtn>
-        <G.ResponsiveHeading>국가별 상세정보</G.ResponsiveHeading>
-        <G.ResponsiveParagraph>
-          국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할
-          수 있습니다.
-        </G.ResponsiveParagraph>
-        {countryData.alarm ? (
-          <>
-            <CountryInfo
-              countryData={countryData}
-              country_nm={country_nm || ""}
-            />
-            <D.FlexContainer>
-              <M.Box style={{ flex: 0.7, aspectRatio: "4/3" }}>
-                <D.MapContainer>
-                  <D.MapImage
-                    src={countryData?.alarm?.dang_map_download_url}
-                    alt="여행경보지도"
-                  />
-                  <D.MapButton onClick={() => setIsMapModalOpen(true)}>
-                    <FontAwesomeIcon
-                      icon={faMagnifyingGlassPlus}
-                      color="#fff"
-                      size="lg"
-                    />
-                  </D.MapButton>
-                </D.MapContainer>
-              </M.Box>
-              <D.SafetyCon>
-                <SafetyNotices
-                  safety={countryData.safety}
-                  country_nm={country_nm || ""}
-                />
-                <EntryRequirements
-                  countryPermission={countryPermission}
-                  isLoading={permissionLoading}
-                  country_nm={country_nm || ""}
-                />
-              </D.SafetyCon>
-            </D.FlexContainer>
-            <EmbassyInfo
-              embassyDataList={embassyDataList}
-              isLoading={embassyLoading}
-              country_nm={country_nm || ""}
-            />
-          </>
-        ) : (
-          <M.Box style={{ marginTop: 16 }}>
-            해당 국가({country_nm})에 대한 상세 정보가 없습니다.
-          </M.Box>
-        )}
+    <>
+      <Helmet>
+        <title>{country_nm} - 국가별 상세정보</title>
+        <meta
+          name="description"
+          content="국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할 수 있습니다."
+        />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌏</text></svg>"
+        />
+      </Helmet>
 
-        <Modal
-          isOpen={isMapModalOpen}
-          onClose={() => setIsMapModalOpen(false)}
-          name="map"
-        >
-          <D.ModalMapImage
-            src={countryData?.alarm?.dang_map_download_url}
-            alt="여행경보지도"
-          />
-        </Modal>
-      </G.mw>
-    </G.Container>
+      <G.Container>
+        <G.mw>
+          <D.backBtn onClick={goBack}>
+            <FontAwesomeIcon icon={faChevronLeft} color="#fff" />
+          </D.backBtn>
+          <G.ResponsiveHeading>국가별 상세정보</G.ResponsiveHeading>
+          <G.ResponsiveParagraph>
+            국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할
+            수 있습니다.
+          </G.ResponsiveParagraph>
+          {countryData.alarm ? (
+            <>
+              <CountryInfo
+                countryData={countryData}
+                country_nm={country_nm || ""}
+              />
+              <D.FlexContainer>
+                <M.Box style={{ flex: 0.7, aspectRatio: "4/3" }}>
+                  <D.MapContainer>
+                    <D.MapImage
+                      src={countryData?.alarm?.dang_map_download_url}
+                      alt="여행경보지도"
+                      onClick={() => setIsMapModalOpen(true)}
+                    />
+                    <D.MapButton onClick={() => setIsMapModalOpen(true)}>
+                      <FontAwesomeIcon
+                        icon={faMagnifyingGlassPlus}
+                        color="#fff"
+                        size="lg"
+                      />
+                    </D.MapButton>
+                  </D.MapContainer>
+                </M.Box>
+                <D.SafetyCon>
+                  <SafetyNotices
+                    safety={countryData.safety}
+                    country_nm={country_nm || ""}
+                  />
+                  <EntryRequirements
+                    countryPermission={countryPermission}
+                    isLoading={permissionLoading}
+                    country_nm={country_nm || ""}
+                  />
+                </D.SafetyCon>
+              </D.FlexContainer>
+              <EmbassyInfo
+                embassyDataList={embassyDataList}
+                isLoading={embassyLoading}
+                country_nm={country_nm || ""}
+              />
+            </>
+          ) : (
+            <M.Box style={{ marginTop: 16 }}>
+              해당 국가({country_nm})에 대한 상세 정보가 없습니다.
+            </M.Box>
+          )}
+
+          <Modal
+            isOpen={isMapModalOpen}
+            onClose={() => setIsMapModalOpen(false)}
+            name="map"
+          >
+            <D.ModalMapImage
+              src={countryData?.alarm?.dang_map_download_url}
+              alt="여행경보지도"
+            />
+          </Modal>
+        </G.mw>
+      </G.Container>
+    </>
   );
 }
