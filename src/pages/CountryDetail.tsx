@@ -309,10 +309,7 @@ export default function CountryDetail() {
           name="description"
           content="국가별 안전공지, 여행경보지도, 입국 허가요건, 재외공관 정보를 확인할 수 있습니다."
         />
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌏</text></svg>"
-        />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Helmet>
 
       <G.Container>
