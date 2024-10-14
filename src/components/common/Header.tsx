@@ -49,7 +49,7 @@ export default function Header() {
         </H.Ul>
       </H.Nav>
       <H.LogoCon className="desktop-only">
-        <H.Logo src="" />
+        <H.Logo src="" alt="header space area" />
       </H.LogoCon>
     </H.HeaderCon>
   );
