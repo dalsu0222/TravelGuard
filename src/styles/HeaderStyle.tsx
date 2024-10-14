@@ -43,6 +43,9 @@ export const LogoCon = styled.div`
       display: none;
     }
   }
+  &.blank {
+    cursor: default;
+  }
 `;
 
 export const Logo = styled.img`
@@ -51,6 +54,15 @@ export const Logo = styled.img`
   width: 150px;
   /* height: 10px;
   width: auto; */
+  @media (max-width: 1000px) {
+    height: 10px;
+    width: auto;
+  }
+`;
+
+export const BlankSpace = styled.div`
+  height: 10px;
+  width: 150px;
   @media (max-width: 1000px) {
     height: 10px;
     width: auto;

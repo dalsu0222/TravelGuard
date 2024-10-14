@@ -48,8 +48,8 @@ export default function Header() {
           )}
         </H.Ul>
       </H.Nav>
-      <H.LogoCon className="desktop-only">
-        <H.Logo src="" alt="header space area" />
+      <H.LogoCon className="desktop-only blank">
+        <H.BlankSpace />
       </H.LogoCon>
     </H.HeaderCon>
   );
